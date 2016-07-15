@@ -6,5 +6,11 @@ package com.dragovorn.dotaapi;
  * as of July 14 2016 the project DotaAPI is Copyrighted.
  * *************************************************************************
  */
-interface IDotaAPI {
+public class DotaAPI implements IDotaAPI {
+
+    private String apiKey;
+
+    public DotaAPI(String apiKey) {
+        this.apiKey = apiKey;
+    }
 }
