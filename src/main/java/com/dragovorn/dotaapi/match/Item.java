@@ -22,7 +22,7 @@ public enum Item {
     RING_OF_PROTECTION("Ring of Protection", 12),
     GAUNTLETS_OF_STRENGTH("Gauntlets of Strength", 13),
     SLIPPERS_OF_AGILITY("Slippers of Agility", 14),
-    MAANTLE_OF_INTELLIGENCE("Mantle of Intelligence", 15),
+    MANTLE_OF_INTELLIGENCE("Mantle of Intelligence", 15),
     IRON_BRANCH("Iron Branch", 16),
     BELT_OF_STRENGTH("Belt of Strength", 17),
     BAND_OF_ELVENSKIN("Band of Elvenskin", 18),
@@ -197,7 +197,7 @@ public enum Item {
     RECIPE_VEIL_OF_DISCORD("Recipe: Veil of Discord", 189),
     VEIL_OF_DISCORD("Veil of Discord", 190),
     RECIPE_NECRONOMICON_2("Recipe: Necronomicon (Level: 2)", 191),
-    RECIPE_NECTONOMICON_3("Recipe: Necronomicon (Level: 3)", 192),
+    RECIPE_NECRONOMICON_3("Recipe: Necronomicon (Level: 3)", 192),
     NECRONOMICON_2("Necronomicon (Level: 2)", 193),
     NECRONOMICON_3("Necronomicon (Level: 3)", 194),
     RECIPE_DIFFUSAL_BLADE_2("Recipe: Diffusal Blade (Level: 2)", 195),
@@ -218,7 +218,6 @@ public enum Item {
     HEAVENS_HALBERD("Heaven's Halberd", 210),
     ;
 
-
     private String name;
 
     private int value;
@@ -229,10 +228,10 @@ public enum Item {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public int getValue() {
-        return value;
+        return this.value;
     }
 }

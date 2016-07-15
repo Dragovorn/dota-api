@@ -1,5 +1,7 @@
 package com.dragovorn.dotaapi.match;
 
+import java.util.List;
+
 /**
  * *************************************************************************
  * (c) Dragovorn 2016. This file was created by Andrew at 09:07 PM.
@@ -11,7 +13,6 @@ interface IPlayer {
     String getAccountId();
 
     int getSlot();
-    int[] getItems();
     int getKills();
     int getDeaths();
     int getAssists();
@@ -29,4 +30,6 @@ interface IPlayer {
     short getLevel();
 
     Hero getHero();
+
+    List<Item> getItems();
 }

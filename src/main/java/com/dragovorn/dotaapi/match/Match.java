@@ -39,7 +39,7 @@ public class Match implements IMatch {
 
     private final GameMode gamemode;
 
-    public Match(List<Player> players, boolean radiantWin, int duration, long startTime, long id, long seqId, int radiantTowers, int direTowers, int radiantRax, int direRax, int cluster, int firstBlood, int lobbyType, int humanPlayers, int leagueId, int positiveVotes, int negativeVotes, int gamemode) {
+    Match(List<Player> players, boolean radiantWin, int duration, long startTime, long id, long seqId, int radiantTowers, int direTowers, int radiantRax, int direRax, int cluster, int firstBlood, int lobbyType, int humanPlayers, int leagueId, int positiveVotes, int negativeVotes, int gamemode) {
         this.players = players;
         this.winner = (radiantWin ? Team.RADIANT : Team.DIRE);
         this.duration = duration;
@@ -93,93 +93,93 @@ public class Match implements IMatch {
     }
 
     @Override
-    public List<Player> getPlayers() {
+    public final List<Player> getPlayers() {
         return this.players;
     }
 
     @Override
-    public Team getWinner() {
+    public final Team getWinner() {
         return this.winner;
     }
 
     @Override
-    public int getDuration() {
+    public final int getDuration() {
         return this.duration;
     }
 
     @Deprecated
     @Override
-    public int getCluster() { // Only deprecated until I figure out all/most cluster ids
+    public final int getCluster() { // Only deprecated until I figure out all/most cluster ids
         return this.cluster;
     }
 
     @Override
-    public int getFirstBloodTime() { // Maybe make this a Date, could do some maths...
+    public final int getFirstBloodTime() { // Maybe make this a Date, could do some maths...
         return this.firstBlood;
     }
 
     @Override
-    public int getHumanPlayers() {
+    public final int getHumanPlayers() {
         return this.humanPlayers;
     }
 
     @Override
-    public int getLeagueId() {
+    public final int getLeagueId() {
         return this.leagueId;
     }
 
     @Override
-    public int getPositiveVotes() {
+    public final int getPositiveVotes() {
         return this.positiveVotes;
     }
 
     @Override
-    public int getNegativeVotes() {
+    public final int getNegativeVotes() {
         return this.negativeVotes;
     }
 
     @Override
-    public Date getDate() {
+    public final Date getDate() {
         return this.startTime;
     }
 
     @Override
-    public long getId() {
+    public final long getId() {
         return this.id;
     }
 
     @Override
-    public long getSeqId() {
+    public final long getSeqId() {
         return this.seqId;
     }
 
     @Override
-    public List<Tower> getRadiantTowers() {
+    public final List<Tower> getRadiantTowers() {
         return this.radiantTowers;
     }
 
     @Override
-    public List<Tower> getDireTowers() {
+    public final List<Tower> getDireTowers() {
         return this.direTowers;
     }
 
     @Override
-    public List<Barracks> getRadiantRax() {
+    public final List<Barracks> getRadiantRax() {
         return this.radiantRax;
     }
 
     @Override
-    public List<Barracks> getDireRax() {
+    public final List<Barracks> getDireRax() {
         return this.direRax;
     }
 
     @Override
-    public LobbyType getLobbyType() {
+    public final LobbyType getLobbyType() {
         return this.lobbyType;
     }
 
     @Override
-    public GameMode getGameMode() {
+    public final GameMode getGameMode() {
         return this.gamemode;
     }
 }

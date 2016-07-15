@@ -1,5 +1,8 @@
 package com.dragovorn.dotaapi.match;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * *************************************************************************
  * (c) Dragovorn 2016. This file was created by Andrew at 09:07 PM.
@@ -11,7 +14,6 @@ public class Player implements IPlayer {
     private final String accountId;
 
     private final int slot;
-    private final int[] items; // Make Enum
     private final int kills;
     private final int deaths;
     private final int assists;
@@ -30,11 +32,13 @@ public class Player implements IPlayer {
 
     private final Hero hero;
 
-    public Player(String id, int slot, int hero, int[] items, int kills, int deaths, int assists, int leaverStatus, int gold, int lastHits, int denies, int gpm, int xpm, int goldSpent, int heroDamage, int towerDamage, int heroHealing, short level) {
+    private final List<Item> items = new ArrayList<>();
+
+    Player(String id, int slot, int hero, int[] items, int kills, int deaths, int assists, int leaverStatus, int gold, int lastHits, int denies, int gpm, int xpm, int goldSpent, int heroDamage, int towerDamage, int heroHealing, short level) {
         this.accountId = id;
         this.slot = slot;
         this.hero = Hero.values()[hero];
-        this.items = items;
+        populateItems(this.items, items);
         this.kills = kills;
         this.deaths = deaths;
         this.assists = assists;
@@ -49,6 +53,12 @@ public class Player implements IPlayer {
         this.towerDamage = towerDamage;
         this.heroHealing = heroHealing;
         this.level = level;
+    }
+
+    private void populateItems(List<Item> item, int[] items) {
+        for (int x : items) {
+            item.add(Item.values()[x]);
+        }
     }
 
     @Override
@@ -67,7 +77,7 @@ public class Player implements IPlayer {
     }
 
     @Override
-    public final int[] getItems() {
+    public final List<Item> getItems() {
         return this.items;
     }
 
