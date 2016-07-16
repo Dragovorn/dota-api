@@ -216,6 +216,7 @@ public enum Item {
     ABYSSAL_BLADE("Abyssal Blade", 208),
     RECIPE_HEAVENS_HALBERD("Recipe: Heaven's Halberd", 209),
     HEAVENS_HALBERD("Heaven's Halberd", 210),
+    RECIPE_RING_OF_AQUILA("Recipe: Ring of Aquila", 211),
     ;
 
     private String name;
