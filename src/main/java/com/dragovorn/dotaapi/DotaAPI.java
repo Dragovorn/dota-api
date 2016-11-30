@@ -68,7 +68,7 @@ public class DotaAPI {
         return makeApiRequest(Call.GETMATCHSEQUENCENUM, "&start_at_match_seq_num=" + sequenceNum + "&matches_requested=" + num);
     }
 
-    // don't use this, too broad and won't work well when people have spaces in their names
+    /** @deprecated */
     @Deprecated
     public JSONObject getMatchesByName(@NotNull String name, int num) throws IOException {
         return makeApiRequest(Call.GETMATCHHISTORY, "&player_name=" + name + "&matches_requested=" + num);
