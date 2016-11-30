@@ -41,6 +41,7 @@ public class DotaAPI {
     private enum Call {
         GETMATCHHISTORY("IDOTA2Match_570/GetMatchHistory/V001"),
         GETMATCHDETAILS("IDOTA2Match_570/GetMatchDetails/V001"),
+        GETMATCHSEQUENCENUM("IDOTA2Match_570/GetMatchHistoryBySequenceNum/V001"),
         RESOLVEVANITYURL("ISteamUser/ResolveVanityURL/v0001");
 
         private final String url;
@@ -63,9 +64,13 @@ public class DotaAPI {
         return makeApiRequest(Call.GETMATCHHISTORY, "&account_id=" + steamId + "&matches_requested=" + num);
     }
 
+    public JSONObject getMatchesBySequenceNum(String sequenceNum, int num) throws IOException {
+        return makeApiRequest(Call.GETMATCHSEQUENCENUM, "&start_at_match_seq_num=" + sequenceNum + "&matches_requested=" + num);
+    }
+
     // don't use this, too broad and won't work well when people have spaces in their names
     @Deprecated
-    public JSONObject getMatchesByName(@NotNull String name, int num) throws IOException { // buggy
+    public JSONObject getMatchesByName(@NotNull String name, int num) throws IOException {
         return makeApiRequest(Call.GETMATCHHISTORY, "&player_name=" + name + "&matches_requested=" + num);
     }
 

@@ -50,4 +50,14 @@ public class TestDotaAPI {
             fail();
         }
     }
+
+    @Test
+    public void testGetMatchBySequenceNum() {
+        try {
+            System.out.println(this.dotaAPI.getMatchesBySequenceNum("1", 1).toString(4));
+        } catch (IOException exception) {
+            exception.printStackTrace();
+            fail();
+        }
+    }
 }
