@@ -1,5 +1,5 @@
 /*
- * Copyright (c)  2016-2016, Andrew Burr
+ * Copyright (c) 2016, Andrew Burr
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,6 +32,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+// TODO make this OOP
 public class DotaAPI {
 
     private final String key;

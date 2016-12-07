@@ -44,7 +44,7 @@ public class TestDotaAPI {
     @Test
     public void testGetMatchDetails() {
         try {
-            System.out.println(this.dotaAPI.getMatchDetails("2695234392").toString(4));
+            System.out.println(this.dotaAPI.getMatchDetails("2810311738").toString(4));
         } catch (IOException exception) {
             exception.printStackTrace();
             fail();
