@@ -69,12 +69,6 @@ public class DotaAPI {
         return makeApiRequest(Call.GETMATCHSEQUENCENUM, "&start_at_match_seq_num=" + sequenceNum + "&matches_requested=" + num);
     }
 
-    /** @deprecated */
-    @Deprecated
-    public JSONObject getMatchesByName(@NotNull String name, int num) throws IOException {
-        return makeApiRequest(Call.GETMATCHHISTORY, "&player_name=" + name + "&matches_requested=" + num);
-    }
-
     public JSONObject getMatchesByURL(@NotNull String url, int num) throws IOException {
         return getMatchesById(makeApiRequest(Call.RESOLVEVANITYURL, "&vanityurl=" + url).getJSONObject("response").getLong("steamid"), num);
     }
