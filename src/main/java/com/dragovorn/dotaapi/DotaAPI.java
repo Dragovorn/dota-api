@@ -32,7 +32,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
-// TODO make this OOP
+@Deprecated
 public class DotaAPI {
 
     private final String key;
