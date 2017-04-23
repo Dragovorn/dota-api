@@ -1,7 +1,6 @@
 package com.dragovorn.dotaapi;
 
 import com.dragovorn.dotaapi.match.DotaMatch;
-import com.sun.istack.internal.NotNull;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -35,7 +34,7 @@ public class Dota implements IDota {
         }
     }
 
-    public Dota(@NotNull String key) {
+    public Dota(String key) {
         this.key = key;
         this.client = HttpClientBuilder.create().build();
     }

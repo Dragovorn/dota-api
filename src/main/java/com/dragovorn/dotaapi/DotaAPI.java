@@ -22,7 +22,6 @@
 
 package com.dragovorn.dotaapi;
 
-import com.sun.istack.internal.NotNull;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -59,12 +58,12 @@ public class DotaAPI {
         }
     }
 
-    public DotaAPI(@NotNull String key) {
+    public DotaAPI(String key) {
         this.key = key;
         this.client = HttpClientBuilder.create().build();
     }
 
-    public JSONObject getMatchesById(@NotNull long steamId, int num) throws IOException { // maybe catch this exception later rather than throwing it
+    public JSONObject getMatchesById(long steamId, int num) throws IOException { // maybe catch this exception later rather than throwing it
         return makeApiRequest(Call.GETMATCHHISTORY, "&account_id=" + steamId + "&matches_requested=" + num);
     }
 
@@ -72,11 +71,11 @@ public class DotaAPI {
         return makeApiRequest(Call.GETMATCHSEQUENCENUM, "&start_at_match_seq_num=" + sequenceNum + "&matches_requested=" + num);
     }
 
-    public JSONObject getMatchesByURL(@NotNull String url, int num) throws IOException {
+    public JSONObject getMatchesByURL(String url, int num) throws IOException {
         return getMatchesById(makeApiRequest(Call.RESOLVEVANITYURL, "&vanityurl=" + url).getJSONObject("response").getLong("steamid"), num);
     }
 
-    public JSONObject getMatchDetails(@NotNull String id) throws IOException {
+    public JSONObject getMatchDetails(String id) throws IOException {
         return makeApiRequest(Call.GETMATCHDETAILS, "&match_id=" + id);
     }
 
