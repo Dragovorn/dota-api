@@ -4,6 +4,13 @@ import org.json.JSONObject;
 
 import java.util.Date;
 
+/**
+ * Default implementation of {@link com.dragovorn.dotaapi.IDota}.
+ *
+ * @author Andrew Burr
+ * @version 0.1
+ * @since 0.0.1
+ */
 public class DotaMatch implements IMatch {
 
     private final Date startTime;
