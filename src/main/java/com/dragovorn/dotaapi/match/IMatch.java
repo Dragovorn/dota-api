@@ -20,13 +20,51 @@
  * SOFTWARE.
  */
 
-package com.dragovorn.dotaapi;
+package com.dragovorn.dotaapi.match;
 
-import org.json.JSONObject;
+import java.util.Date;
 
-public class Match {
+/**
+ * Represents a match of Dota. Simple implementation found at {@link com.dragovorn.dotaapi.match.DotaMatch}.
+ *
+ * @author Andrew Burr
+ * @version 0.1
+ * @since 0.0.1
+ */
+public interface IMatch {
 
-    Match(JSONObject object) {
-        // TODO
-    }
+    /**
+     * Returns weather or not the Radiant team won.
+     *
+     * @return If Radiant Team won.
+     */
+    boolean didRadiantWin();
+
+    /**
+     * Returns the duration of the match.
+     *
+     * @return Duration of match.
+     */
+    int getDuration();
+
+    /**
+     * Returns the Match ID of the match.
+     *
+     * @return Match ID of match.
+     */
+    String getMatchId();
+
+    /**
+     * Returns the Sequence ID of the match.
+     *
+     * @return Sequence ID of match.
+     */
+    String getSequenceId();
+
+    /**
+     * Returns when the match started
+     *
+     * @return Start date of match.
+     */
+    Date getStartTime();
 }

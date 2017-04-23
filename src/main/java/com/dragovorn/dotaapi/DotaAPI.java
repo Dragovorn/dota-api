@@ -32,6 +32,9 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+/**
+ * @deprecated This was to test dota api connectivity.
+ */
 @Deprecated
 public class DotaAPI {
 
