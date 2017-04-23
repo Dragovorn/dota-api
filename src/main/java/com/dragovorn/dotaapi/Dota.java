@@ -1,6 +1,6 @@
 package com.dragovorn.dotaapi;
 
-import com.dragovorn.dotaapi.match.DotaMatch;
+import com.dragovorn.dotaapi.match.IMatch;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -53,22 +53,22 @@ public class Dota implements IDota {
     }
 
     @Override
-    public DotaMatch getMatchById(String id) {
+    public IMatch getMatchById(String id) {
         return null;
     }
 
     @Override
-    public DotaMatch getMatchBySeqId(String id) {
+    public IMatch getMatchBySeqId(String id) {
         return null;
     }
 
     @Override
-    public List<DotaMatch> getMatchesById(String id, int num) {
+    public List<IMatch> getMatchesById(String id, int num) {
         return null;
     }
 
     @Override
-    public List<DotaMatch> getMatchesBySeqId(String id, int num) {
+    public List<IMatch> getMatchesBySeqId(String id, int num) {
         return null;
     }
 }

@@ -33,6 +33,7 @@
         </extensions>
     </build>
     <dependencies>
+        <!--add Mockito and PowerMock for testing-->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

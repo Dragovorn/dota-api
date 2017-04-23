@@ -1,6 +1,6 @@
 package com.dragovorn.dotaapi;
 
-import com.dragovorn.dotaapi.match.DotaMatch;
+import com.dragovorn.dotaapi.match.IMatch;
 
 import java.util.List;
 
@@ -15,9 +15,9 @@ import java.util.List;
  */
 public interface IDota {
 
-    DotaMatch getMatchById(String id);
-    DotaMatch getMatchBySeqId(String id);
+    IMatch getMatchById(String id);
+    IMatch getMatchBySeqId(String id);
 
-    List<DotaMatch> getMatchesById(String id, int num);
-    List<DotaMatch> getMatchesBySeqId(String id, int num);
+    List<IMatch> getMatchesById(String id, int num);
+    List<IMatch> getMatchesBySeqId(String id, int num);
 }
