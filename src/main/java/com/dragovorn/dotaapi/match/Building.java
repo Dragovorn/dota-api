@@ -66,7 +66,12 @@ public class Building {
      * @return A list of buildings remaining deduced from the bit.
      */
     public static List<Building> deduceFromBit(int bit, boolean rax) {
+        if (!rax) {
+            String bin = Integer.toBinaryString(0x10000 | bit).substring(1);
+        }
+
         // TODO
+
         return new ArrayList<>();
     }
 
@@ -74,13 +79,13 @@ public class Building {
      * Enum to represent the lane of a building.
      *
      * @author Andrew Burr
-     * @version 1
+     * @version 1.1
      * @since 0.0.1
      */
     public enum Lane {
-        TOP,
+        BOT,
         MID,
-        BOT
+        TOP
     }
 
     /**
