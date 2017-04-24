@@ -22,6 +22,8 @@
 
 package com.dragovorn.dotaapi.match;
 
+import com.google.common.collect.ImmutableList;
+
 import java.util.Date;
 
 /**
@@ -52,14 +54,14 @@ public interface IMatch {
      *
      * @return Match ID of match.
      */
-    String getMatchId();
+    long getMatchId();
 
     /**
      * Returns the Sequence ID of the match.
      *
      * @return Sequence ID of match.
      */
-    String getSequenceId();
+    long getSequenceId();
 
     /**
      * Returns when the match started
@@ -67,4 +69,18 @@ public interface IMatch {
      * @return Start date of match.
      */
     Date getStartTime();
+
+    /**
+     * Returns the list of Radiant Buildings.
+     *
+     * @return List of Radiant Buildings.
+     */
+    ImmutableList<Building> getRadiantBuildings();
+
+    /**
+     * Returns the list of Dire Buildings.
+     *
+     * @return List of Dire Buildings.
+     */
+    ImmutableList<Building> getDireBuildings();
 }

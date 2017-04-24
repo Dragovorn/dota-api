@@ -1,8 +1,10 @@
 package com.dragovorn.dotaapi.match;
 
+import com.google.common.collect.ImmutableList;
 import org.json.JSONObject;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Default implementation of {@link com.dragovorn.dotaapi.IDota}.
@@ -13,10 +15,13 @@ import java.util.Date;
  */
 public class DotaMatch implements IMatch {
 
+    private final ImmutableList<Building> imutRadiantBuildings;
+    private final ImmutableList<Building> imutDireBuildings;
+
     private final Date startTime;
 
-    private final String matchId;
-    private final String matchSeqId;
+    private final long matchId;
+    private final long matchSeqId;
 
     private final int duration;
 
@@ -24,12 +29,18 @@ public class DotaMatch implements IMatch {
 
     public DotaMatch(JSONObject object) {
         this.startTime = new Date(object.getLong("start_time"));
-        this.matchId = object.getString("match_id");
-        this.matchSeqId = object.getString("match_seq_num");
+        this.matchId = object.getLong("match_id");
+        this.matchSeqId = object.getLong("match_seq_num");
         this.duration = object.getInt("duration");
         this.radiantWin = object.getBoolean("radiant_win");
 
+        List<Building> radiantBuildings = Building.deduceFromDecimal(object.getInt("tower_status_radiant"), false);
+        List<Building> direBuildings = Building.deduceFromDecimal(object.getInt("tower_status_dire"), false);
+
         // TODO
+
+        this.imutRadiantBuildings = new ImmutableList.Builder<Building>().addAll(radiantBuildings).build();
+        this.imutDireBuildings = new ImmutableList.Builder<Building>().addAll(direBuildings).build();
     }
 
     @Override
@@ -43,17 +54,27 @@ public class DotaMatch implements IMatch {
     }
 
     @Override
-    public String getMatchId() {
+    public long getMatchId() {
         return this.matchId;
     }
 
     @Override
-    public String getSequenceId() {
+    public long getSequenceId() {
         return this.matchSeqId;
     }
 
     @Override
     public Date getStartTime() {
         return this.startTime;
+    }
+
+    @Override
+    public ImmutableList<Building> getRadiantBuildings() {
+        return this.imutRadiantBuildings;
+    }
+
+    @Override
+    public ImmutableList<Building> getDireBuildings() {
+        return this.imutDireBuildings;
     }
 }

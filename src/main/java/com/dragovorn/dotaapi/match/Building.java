@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Enum to help keep track of buildings in a match
+ * Object that represents a building in a match
  *
  * @author Andrew Burr
  * @version 1
@@ -61,18 +61,40 @@ public class Building {
     /**
      * Deduces the buildings left in a game from the bit passed in.
      *
-     * @param bit The bit to deduce the remaining buildings from.
+     * @param decimal The decimal to deduce the remaining buildings from.
      * @param rax Weather or not the bit passed in is the rax bit.
      * @return A list of buildings remaining deduced from the bit.
      */
-    public static List<Building> deduceFromBit(int bit, boolean rax) {
+    public static List<Building> deduceFromDecimal(int decimal, boolean rax) {
+        ArrayList<Building> list = new ArrayList<>();
+
         if (!rax) {
-            String bin = Integer.toBinaryString(0x10000 | bit).substring(1);
+            String bin = Integer.toBinaryString(0x10000 | decimal).substring(7);
+
+            int binLoc = 0;
+
+            for (int x = 0; x < 3; x++) {
+                for (int y = 3; y > 0; y--) {
+                    if (bin.charAt(binLoc++) == '1') {
+                        list.add(new Building(Type.TOWER, Lane.values()[x], y));
+                    }
+                }
+            }
+        } else {
+            String bin = Integer.toBinaryString(0x100 | decimal).substring(3);
+
+            int binLoc = 0;
+
+            for (int x = 0; x < 3; x++) {
+                for (int y = 0; y < 2; y++) {
+                    if (bin.charAt(binLoc++) == '1') {
+                        list.add(new Building(Type.values()[y + 2], Lane.values()[x], 0));
+                    }
+                }
+            }
         }
 
-        // TODO
-
-        return new ArrayList<>();
+        return list;
     }
 
     /**
