@@ -1,5 +1,6 @@
 package com.dragovorn.dotaapi.match;
 
+import com.dragovorn.dotaapi.match.building.Building;
 import com.google.common.collect.ImmutableList;
 import org.json.JSONObject;
 
@@ -35,7 +36,15 @@ public class DotaMatch implements IMatch {
         this.radiantWin = object.getBoolean("radiant_win");
 
         List<Building> radiantBuildings = Building.deduceFromDecimal(object.getInt("tower_status_radiant"), false);
+        radiantBuildings.addAll(Building.deduceFromDecimal(object.getInt("barracks_status_radiant"), true));
         List<Building> direBuildings = Building.deduceFromDecimal(object.getInt("tower_status_dire"), false);
+        direBuildings.addAll(Building.deduceFromDecimal(object.getInt("barracks_status_dire"), true));
+
+        if (this.radiantWin) {
+            radiantBuildings.add(new Building(Building.Type.ANCIENT, Building.Lane.MID, 0));
+        } else {
+            direBuildings.add(new Building(Building.Type.ANCIENT, Building.Lane.MID, 0));
+        }
 
         // TODO
 

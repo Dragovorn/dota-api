@@ -1,4 +1,4 @@
-package com.dragovorn.dotaapi.match;
+package com.dragovorn.dotaapi.match.building;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,14 +7,14 @@ import java.util.List;
  * Object that represents a building in a match
  *
  * @author Andrew Burr
- * @version 1
+ * @version 1.1
  * @since 0.0.1
  */
 public class Building {
 
-    private Type type;
+    private BuildingType type;
 
-    private Lane lane;
+    private BuildingLane lane;
 
     private int tier;
 
@@ -25,7 +25,7 @@ public class Building {
      * @param lane Lane of the building.
      * @param tier Tier of the building.
      */
-    private Building(Type type, Lane lane, int tier) {
+    public Building(BuildingType type, BuildingLane lane, int tier) {
         this.type = type;
         this.lane = lane;
         this.tier = tier;
@@ -36,7 +36,7 @@ public class Building {
      *
      * @return The type of building.
      */
-    public Type getType() {
+    public BuildingType getType() {
         return this.type;
     }
 
@@ -45,7 +45,7 @@ public class Building {
      *
      * @return The lane of the building.
      */
-    public Lane getLane() {
+    public BuildingLane getLane() {
         return this.lane;
     }
 
@@ -66,6 +66,10 @@ public class Building {
      * @return A list of buildings remaining deduced from the bit.
      */
     public static List<Building> deduceFromDecimal(int decimal, boolean rax) {
+        if (decimal == 0) {
+            return new ArrayList<>();
+        }
+
         ArrayList<Building> list = new ArrayList<>();
 
         if (!rax) {
@@ -76,7 +80,7 @@ public class Building {
             for (int x = 0; x < 3; x++) {
                 for (int y = 3; y > 0; y--) {
                     if (bin.charAt(binLoc++) == '1') {
-                        list.add(new Building(Type.TOWER, Lane.values()[x], y));
+                        list.add(new Building(BuildingType.TOWER, BuildingLane.values()[x], y));
                     }
                 }
             }
@@ -88,7 +92,7 @@ public class Building {
             for (int x = 0; x < 3; x++) {
                 for (int y = 0; y < 2; y++) {
                     if (bin.charAt(binLoc++) == '1') {
-                        list.add(new Building(Type.values()[y + 2], Lane.values()[x], 0));
+                        list.add(new Building(BuildingType.values()[y + 2], BuildingLane.values()[x], 0));
                     }
                 }
             }
@@ -97,31 +101,8 @@ public class Building {
         return list;
     }
 
-    /**
-     * Enum to represent the lane of a building.
-     *
-     * @author Andrew Burr
-     * @version 1.1
-     * @since 0.0.1
-     */
-    public enum Lane {
-        BOT,
-        MID,
-        TOP
-    }
-
-    /**
-     * Enum to represent the type of a building.
-     *
-     * @author Andrew Burr
-     * @version 1
-     * @since 0.0.1
-     */
-    public enum Type {
-        TOWER,
-        SHRINE,
-        RANGEDRAX,
-        MELEERAX,
-        ANCHIENT
+    @Override
+    public String toString() {
+        return "{Building: TYPE: " + this.type + ", LANE: " + this.lane + " TIER: " + this.tier + "}";
     }
 }

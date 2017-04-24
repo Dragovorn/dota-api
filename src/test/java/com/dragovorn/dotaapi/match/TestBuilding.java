@@ -12,5 +12,7 @@ public class TestBuilding {
         IMatch match = new DotaMatch(MatchJSON.MATCH);
 
         assertEquals(true, match.getDireBuildings().isEmpty());
+
+        match.getRadiantBuildings().forEach(building -> System.out.println(building));
     }
 }

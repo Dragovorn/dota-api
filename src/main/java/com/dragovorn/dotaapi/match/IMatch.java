@@ -22,6 +22,7 @@
 
 package com.dragovorn.dotaapi.match;
 
+import com.dragovorn.dotaapi.match.building.Building;
 import com.google.common.collect.ImmutableList;
 
 import java.util.Date;
