@@ -1,6 +1,8 @@
 package com.dragovorn.dotaapi.match;
 
 import com.dragovorn.dotaapi.match.building.Building;
+import com.dragovorn.dotaapi.match.building.BuildingLane;
+import com.dragovorn.dotaapi.match.building.BuildingType;
 import com.google.common.collect.ImmutableList;
 import org.json.JSONObject;
 
@@ -41,9 +43,9 @@ public class DotaMatch implements IMatch {
         direBuildings.addAll(Building.deduceFromDecimal(object.getInt("barracks_status_dire"), true));
 
         if (this.radiantWin) {
-            radiantBuildings.add(new Building(Building.Type.ANCIENT, Building.Lane.MID, 0));
+            radiantBuildings.add(new Building(BuildingType.ANCIENT, BuildingLane.MID, 0));
         } else {
-            direBuildings.add(new Building(Building.Type.ANCIENT, Building.Lane.MID, 0));
+            direBuildings.add(new Building(BuildingType.ANCIENT, BuildingLane.MID, 0));
         }
 
         // TODO
