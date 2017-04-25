@@ -36,7 +36,7 @@
         <repository>
             <id>dragovorn-repo</id>
             <name>Dragovorn Repo</name>
-            <url>repo.dragovorn.com</url>
+            <url>http://repo.dragovorn.com</url>
         </repository>
     </repositories>
     <dependencies>
