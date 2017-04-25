@@ -22,7 +22,7 @@
 
 package com.dragovorn.dotaapi.match;
 
-import com.dragovorn.dotaapi.match.building.Building;
+import com.dragovorn.dotaapi.match.building.IBuilding;
 import com.google.common.collect.ImmutableList;
 
 import java.util.Date;
@@ -76,12 +76,12 @@ public interface IMatch {
      *
      * @return List of Radiant Buildings.
      */
-    ImmutableList<Building> getRadiantBuildings();
+    ImmutableList<IBuilding> getRadiantBuildings();
 
     /**
      * Returns the list of Dire Buildings.
      *
      * @return List of Dire Buildings.
      */
-    ImmutableList<Building> getDireBuildings();
+    ImmutableList<IBuilding> getDireBuildings();
 }

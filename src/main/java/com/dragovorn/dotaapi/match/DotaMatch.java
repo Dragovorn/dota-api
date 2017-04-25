@@ -3,6 +3,7 @@ package com.dragovorn.dotaapi.match;
 import com.dragovorn.dotaapi.match.building.Building;
 import com.dragovorn.dotaapi.match.building.BuildingLane;
 import com.dragovorn.dotaapi.match.building.BuildingType;
+import com.dragovorn.dotaapi.match.building.IBuilding;
 import com.google.common.collect.ImmutableList;
 import org.json.JSONObject;
 
@@ -18,8 +19,8 @@ import java.util.List;
  */
 public class DotaMatch implements IMatch {
 
-    private final ImmutableList<Building> imutRadiantBuildings;
-    private final ImmutableList<Building> imutDireBuildings;
+    private final ImmutableList<IBuilding> imutRadiantBuildings;
+    private final ImmutableList<IBuilding> imutDireBuildings;
 
     private final Date startTime;
 
@@ -37,9 +38,9 @@ public class DotaMatch implements IMatch {
         this.duration = object.getInt("duration");
         this.radiantWin = object.getBoolean("radiant_win");
 
-        List<Building> radiantBuildings = Building.deduceFromDecimal(object.getInt("tower_status_radiant"), false);
+        List<IBuilding> radiantBuildings = Building.deduceFromDecimal(object.getInt("tower_status_radiant"), false);
         radiantBuildings.addAll(Building.deduceFromDecimal(object.getInt("barracks_status_radiant"), true));
-        List<Building> direBuildings = Building.deduceFromDecimal(object.getInt("tower_status_dire"), false);
+        List<IBuilding> direBuildings = Building.deduceFromDecimal(object.getInt("tower_status_dire"), false);
         direBuildings.addAll(Building.deduceFromDecimal(object.getInt("barracks_status_dire"), true));
 
         if (this.radiantWin) {
@@ -50,8 +51,8 @@ public class DotaMatch implements IMatch {
 
         // TODO
 
-        this.imutRadiantBuildings = new ImmutableList.Builder<Building>().addAll(radiantBuildings).build();
-        this.imutDireBuildings = new ImmutableList.Builder<Building>().addAll(direBuildings).build();
+        this.imutRadiantBuildings = new ImmutableList.Builder<IBuilding>().addAll(radiantBuildings).build();
+        this.imutDireBuildings = new ImmutableList.Builder<IBuilding>().addAll(direBuildings).build();
     }
 
     @Override
@@ -80,12 +81,12 @@ public class DotaMatch implements IMatch {
     }
 
     @Override
-    public ImmutableList<Building> getRadiantBuildings() {
+    public ImmutableList<IBuilding> getRadiantBuildings() {
         return this.imutRadiantBuildings;
     }
 
     @Override
-    public ImmutableList<Building> getDireBuildings() {
+    public ImmutableList<IBuilding> getDireBuildings() {
         return this.imutDireBuildings;
     }
 }

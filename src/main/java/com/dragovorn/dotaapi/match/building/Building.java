@@ -10,7 +10,7 @@ import java.util.List;
  * @version 1.1
  * @since 0.0.1
  */
-public class Building {
+public class Building implements IBuilding<BuildingType, BuildingLane> {
 
     private BuildingType type;
 
@@ -36,6 +36,7 @@ public class Building {
      *
      * @return The type of building.
      */
+    @Override
     public BuildingType getType() {
         return this.type;
     }
@@ -45,6 +46,7 @@ public class Building {
      *
      * @return The lane of the building.
      */
+    @Override
     public BuildingLane getLane() {
         return this.lane;
     }
@@ -54,6 +56,7 @@ public class Building {
      *
      * @return The tier of the building.
      */
+    @Override
     public int getTier() {
         return this.tier;
     }
@@ -65,12 +68,12 @@ public class Building {
      * @param rax Weather or not the bit passed in is the rax bit.
      * @return A list of buildings remaining deduced from the bit.
      */
-    public static List<Building> deduceFromDecimal(int decimal, boolean rax) {
+    public static List<IBuilding> deduceFromDecimal(int decimal, boolean rax) {
         if (decimal == 0) {
             return new ArrayList<>();
         }
 
-        ArrayList<Building> list = new ArrayList<>();
+        ArrayList<IBuilding> list = new ArrayList<>();
 
         if (!rax) {
             String bin = Integer.toBinaryString(0x10000 | decimal).substring(7);
