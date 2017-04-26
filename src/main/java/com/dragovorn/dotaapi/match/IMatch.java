@@ -22,8 +22,7 @@
 
 package com.dragovorn.dotaapi.match;
 
-import com.dragovorn.dotaapi.match.building.IBuilding;
-import com.google.common.collect.ImmutableList;
+import com.dragovorn.dotaapi.match.team.ITeam;
 
 import java.util.Date;
 
@@ -31,7 +30,7 @@ import java.util.Date;
  * Represents a match of Dota. Simple implementation found at {@link com.dragovorn.dotaapi.match.DotaMatch}.
  *
  * @author Andrew Burr
- * @version 0.1
+ * @version 0.4
  * @since 0.0.1
  */
 public interface IMatch {
@@ -46,42 +45,56 @@ public interface IMatch {
     /**
      * Returns the duration of the match.
      *
-     * @return Duration of match.
+     * @return The Duration of match.
      */
     int getDuration();
 
     /**
+     * Returns the when first blood happened in the match.
+     *
+     * @return The First Blood of the match.
+     */
+    int getFirstBlood();
+
+    /**
      * Returns the Match ID of the match.
      *
-     * @return Match ID of match.
+     * @return The Match ID of match.
      */
     long getMatchId();
 
     /**
      * Returns the Sequence ID of the match.
      *
-     * @return Sequence ID of match.
+     * @return The Sequence ID of match.
      */
     long getSequenceId();
 
     /**
      * Returns when the match started
      *
-     * @return Start date of match.
+     * @return The start date of match.
      */
     Date getStartTime();
 
     /**
-     * Returns the list of Radiant Buildings.
+     * Returns the Radiant Team.
      *
-     * @return List of Radiant Buildings.
+     * @return The Radiant Team.
      */
-    ImmutableList<IBuilding> getRadiantBuildings();
+    ITeam getRadiant();
 
     /**
-     * Returns the list of Dire Buildings.
+     * Returns the Dire Team.
      *
-     * @return List of Dire Buildings.
+     * @return The Dire Team.
      */
-    ImmutableList<IBuilding> getDireBuildings();
+    ITeam getDire();
+
+    /**
+     * Returns the team that won the match.
+     *
+     * @return The Winning Team.
+     */
+    ITeam getWinner();
 }

@@ -5,11 +5,21 @@ import com.dragovorn.dotaapi.match.building.BuildingType;
 import com.dragovorn.dotaapi.match.building.IBuilding;
 import com.google.common.collect.ImmutableList;
 
-public interface ITeam {
+/**
+ * Represents one of the two teams in an {@link com.dragovorn.dotaapi.match.IMatch} of Dota.
+ * Simple Implementation found at {@link DotaTeam}
+ *
+ * @since 0.0.1
+ * @version 0.1
+ * @author Andrew Burr
+ * @param <S> The TeamSide (Radiant, Dire) indicator.
+ */
+public interface ITeam<S> {
 
     boolean hasBuilding(BuildingType type, BuildingLane lane, int tier);
-
-    String getName();
+    boolean didWin();
 
     ImmutableList<IBuilding> getBuildings();
+
+    S getSide();
 }

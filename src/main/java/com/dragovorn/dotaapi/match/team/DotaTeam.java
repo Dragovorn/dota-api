@@ -8,14 +8,17 @@ import com.google.common.collect.ImmutableList;
 
 import java.util.List;
 
-public class DotaTeam implements ITeam {
+public class DotaTeam implements ITeam<TeamSide> {
 
-    private final String name;
+    private final TeamSide side;
 
     private final ImmutableList<IBuilding> buildings;
 
-    public DotaTeam(String name, int towerStatus, int raxStatus, boolean won) {
-        this.name = name;
+    private final boolean won;
+
+    public DotaTeam(TeamSide side, int towerStatus, int raxStatus, boolean won) {
+        this.side = side;
+        this.won = won;
 
         List<IBuilding> buildings = Building.deduceFromDecimal(towerStatus, false);
         buildings.addAll(Building.deduceFromDecimal(raxStatus, true));
@@ -33,12 +36,28 @@ public class DotaTeam implements ITeam {
     }
 
     @Override
-    public String getName() {
-        return name;
+    public boolean didWin() {
+        return this.won;
     }
 
     @Override
     public ImmutableList<IBuilding> getBuildings() {
         return this.buildings;
+    }
+
+    @Override
+    public TeamSide getSide() {
+        return this.side;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof ITeam<?>)) {
+            return false;
+        }
+
+        ITeam<?> team = (ITeam<?>) object;
+
+        return (this.won == team.didWin()) && (this.buildings.equals(team.getBuildings())) && (this.side.equals(team.getSide()));
     }
 }

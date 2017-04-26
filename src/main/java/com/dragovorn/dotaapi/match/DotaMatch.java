@@ -1,26 +1,23 @@
 package com.dragovorn.dotaapi.match;
 
-import com.dragovorn.dotaapi.match.building.Building;
-import com.dragovorn.dotaapi.match.building.BuildingLane;
-import com.dragovorn.dotaapi.match.building.BuildingType;
-import com.dragovorn.dotaapi.match.building.IBuilding;
-import com.google.common.collect.ImmutableList;
+import com.dragovorn.dotaapi.match.team.DotaTeam;
+import com.dragovorn.dotaapi.match.team.ITeam;
+import com.dragovorn.dotaapi.match.team.TeamSide;
 import org.json.JSONObject;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  * Default implementation of {@link com.dragovorn.dotaapi.IDota}.
  *
  * @author Andrew Burr
- * @version 0.1
+ * @version 0.4
  * @since 0.0.1
  */
 public class DotaMatch implements IMatch {
 
-    private final ImmutableList<IBuilding> imutRadiantBuildings;
-    private final ImmutableList<IBuilding> imutDireBuildings;
+    private final ITeam radiant;
+    private final ITeam dire;
 
     private final Date startTime;
 
@@ -28,6 +25,7 @@ public class DotaMatch implements IMatch {
     private final long matchSeqId;
 
     private final int duration;
+    private final int firstBlood;
 
     private final boolean radiantWin;
 
@@ -36,23 +34,10 @@ public class DotaMatch implements IMatch {
         this.matchId = object.getLong("match_id");
         this.matchSeqId = object.getLong("match_seq_num");
         this.duration = object.getInt("duration");
+        this.firstBlood = object.getInt("first_blood_time");
         this.radiantWin = object.getBoolean("radiant_win");
-
-        List<IBuilding> radiantBuildings = Building.deduceFromDecimal(object.getInt("tower_status_radiant"), false);
-        radiantBuildings.addAll(Building.deduceFromDecimal(object.getInt("barracks_status_radiant"), true));
-        List<IBuilding> direBuildings = Building.deduceFromDecimal(object.getInt("tower_status_dire"), false);
-        direBuildings.addAll(Building.deduceFromDecimal(object.getInt("barracks_status_dire"), true));
-
-        if (this.radiantWin) {
-            radiantBuildings.add(new Building(BuildingType.ANCIENT, BuildingLane.MID, 0));
-        } else {
-            direBuildings.add(new Building(BuildingType.ANCIENT, BuildingLane.MID, 0));
-        }
-
-        // TODO
-
-        this.imutRadiantBuildings = new ImmutableList.Builder<IBuilding>().addAll(radiantBuildings).build();
-        this.imutDireBuildings = new ImmutableList.Builder<IBuilding>().addAll(direBuildings).build();
+        this.radiant = new DotaTeam(TeamSide.RADIANT, object.getInt("tower_status_radiant"), object.getInt("barracks_status_radiant"), this.radiantWin);
+        this.dire = new DotaTeam(TeamSide.DIRE, object.getInt("tower_status_dire"), object.getInt("barracks_status_dire"), !this.radiantWin);
     }
 
     @Override
@@ -63,6 +48,11 @@ public class DotaMatch implements IMatch {
     @Override
     public int getDuration() {
         return this.duration;
+    }
+
+    @Override
+    public int getFirstBlood() {
+        return this.firstBlood;
     }
 
     @Override
@@ -81,12 +71,17 @@ public class DotaMatch implements IMatch {
     }
 
     @Override
-    public ImmutableList<IBuilding> getRadiantBuildings() {
-        return this.imutRadiantBuildings;
+    public ITeam getRadiant() {
+        return this.radiant;
     }
 
     @Override
-    public ImmutableList<IBuilding> getDireBuildings() {
-        return this.imutDireBuildings;
+    public ITeam getDire() {
+        return this.dire;
+    }
+
+    @Override
+    public ITeam getWinner() {
+        return (this.radiantWin ? this.radiant : this.dire);
     }
 }
