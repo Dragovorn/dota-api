@@ -1,8 +1,8 @@
 package com.dragovorn.dotaapi.match.team;
 
-import com.dragovorn.dotaapi.match.building.Building;
 import com.dragovorn.dotaapi.match.building.BuildingLane;
 import com.dragovorn.dotaapi.match.building.BuildingType;
+import com.dragovorn.dotaapi.match.building.IBuilding;
 import com.google.common.collect.ImmutableList;
 
 public interface ITeam {
@@ -11,5 +11,5 @@ public interface ITeam {
 
     String getName();
 
-    ImmutableList<Building> getBuildings();
+    ImmutableList<IBuilding> getBuildings();
 }
