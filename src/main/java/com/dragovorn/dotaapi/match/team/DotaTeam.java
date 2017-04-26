@@ -4,6 +4,7 @@ import com.dragovorn.dotaapi.match.building.Building;
 import com.dragovorn.dotaapi.match.building.BuildingLane;
 import com.dragovorn.dotaapi.match.building.BuildingType;
 import com.dragovorn.dotaapi.match.building.IBuilding;
+import com.dragovorn.dotaapi.match.player.IPlayer;
 import com.google.common.collect.ImmutableList;
 
 import java.util.List;
@@ -43,6 +44,11 @@ public class DotaTeam implements ITeam<TeamSide> {
     @Override
     public ImmutableList<IBuilding> getBuildings() {
         return this.buildings;
+    }
+
+    @Override
+    public ImmutableList<IPlayer> getPlayers() {
+        return null;
     }
 
     @Override
