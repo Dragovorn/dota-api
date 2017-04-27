@@ -10,11 +10,11 @@ import java.util.List;
  * @version 1.1
  * @since 0.0.1
  */
-public class Building implements IBuilding<BuildingType, BuildingLane> {
+public class Building implements IBuilding {
 
-    private BuildingType type;
+    private Type type;
 
-    private BuildingLane lane;
+    private Lane lane;
 
     private int tier;
 
@@ -25,7 +25,7 @@ public class Building implements IBuilding<BuildingType, BuildingLane> {
      * @param lane Lane of the building.
      * @param tier Tier of the building.
      */
-    public Building(BuildingType type, BuildingLane lane, int tier) {
+    public Building(Type type, Lane lane, int tier) {
         this.type = type;
         this.lane = lane;
         this.tier = tier;
@@ -37,7 +37,7 @@ public class Building implements IBuilding<BuildingType, BuildingLane> {
      * @return The type of building.
      */
     @Override
-    public BuildingType getType() {
+    public Type getType() {
         return this.type;
     }
 
@@ -47,7 +47,7 @@ public class Building implements IBuilding<BuildingType, BuildingLane> {
      * @return The lane of the building.
      */
     @Override
-    public BuildingLane getLane() {
+    public Lane getLane() {
         return this.lane;
     }
 
@@ -83,7 +83,7 @@ public class Building implements IBuilding<BuildingType, BuildingLane> {
             for (int x = 0; x < 3; x++) {
                 for (int y = 3; y > 0; y--) {
                     if (bin.charAt(binLoc++) == '1') {
-                        list.add(new Building(BuildingType.TOWER, BuildingLane.values()[x], y));
+                        list.add(new Building(Type.TOWER, Lane.values()[x], y));
                     }
                 }
             }
@@ -95,7 +95,7 @@ public class Building implements IBuilding<BuildingType, BuildingLane> {
             for (int x = 0; x < 3; x++) {
                 for (int y = 0; y < 2; y++) {
                     if (bin.charAt(binLoc++) == '1') {
-                        list.add(new Building(BuildingType.values()[y + 2], BuildingLane.values()[x], 0));
+                        list.add(new Building(Type.values()[y + 2], Lane.values()[x], 0));
                     }
                 }
             }

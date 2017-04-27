@@ -23,6 +23,7 @@
 package com.dragovorn.dotaapi.match;
 
 import com.dragovorn.dotaapi.match.team.ITeam;
+import org.json.JSONObject;
 
 import java.util.Date;
 
@@ -30,7 +31,7 @@ import java.util.Date;
  * Represents a match of Dota. Simple implementation found at {@link com.dragovorn.dotaapi.match.DotaMatch}.
  *
  * @author Andrew Burr
- * @version 0.4
+ * @version 0.5
  * @since 0.0.1
  */
 public interface IMatch {
@@ -97,4 +98,11 @@ public interface IMatch {
      * @return The Winning Team.
      */
     ITeam getWinner();
+
+    /**
+     * Returns the JSON used to generate this object.
+     *
+     * @return The JSON used to generate this object.
+     */
+    JSONObject getJSONObject();
 }

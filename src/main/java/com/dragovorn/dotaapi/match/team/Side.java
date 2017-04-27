@@ -1,6 +1,6 @@
 package com.dragovorn.dotaapi.match.team;
 
-public enum TeamSide {
+public enum Side {
     RADIANT,
     DIRE
 }

@@ -2,7 +2,7 @@ package com.dragovorn.dotaapi.match;
 
 import com.dragovorn.dotaapi.match.team.DotaTeam;
 import com.dragovorn.dotaapi.match.team.ITeam;
-import com.dragovorn.dotaapi.match.team.TeamSide;
+import com.dragovorn.dotaapi.match.team.Side;
 import org.json.JSONObject;
 
 import java.util.Date;
@@ -11,10 +11,12 @@ import java.util.Date;
  * Default implementation of {@link com.dragovorn.dotaapi.IDota}.
  *
  * @author Andrew Burr
- * @version 0.4
+ * @version 0.5
  * @since 0.0.1
  */
 public class DotaMatch implements IMatch {
+
+    private final JSONObject object;
 
     private final ITeam radiant;
     private final ITeam dire;
@@ -30,14 +32,15 @@ public class DotaMatch implements IMatch {
     private final boolean radiantWin;
 
     public DotaMatch(JSONObject object) {
+        this.object = object;
         this.startTime = new Date(object.getLong("start_time"));
         this.matchId = object.getLong("match_id");
         this.matchSeqId = object.getLong("match_seq_num");
         this.duration = object.getInt("duration");
         this.firstBlood = object.getInt("first_blood_time");
         this.radiantWin = object.getBoolean("radiant_win");
-        this.radiant = new DotaTeam(TeamSide.RADIANT, object.getInt("tower_status_radiant"), object.getInt("barracks_status_radiant"), this.radiantWin);
-        this.dire = new DotaTeam(TeamSide.DIRE, object.getInt("tower_status_dire"), object.getInt("barracks_status_dire"), !this.radiantWin);
+        this.radiant = new DotaTeam(Side.RADIANT, object.getInt("tower_status_radiant"), object.getInt("barracks_status_radiant"), this.radiantWin);
+        this.dire = new DotaTeam(Side.DIRE, object.getInt("tower_status_dire"), object.getInt("barracks_status_dire"), !this.radiantWin);
     }
 
     @Override
@@ -83,5 +86,10 @@ public class DotaMatch implements IMatch {
     @Override
     public ITeam getWinner() {
         return (this.radiantWin ? this.radiant : this.dire);
+    }
+
+    @Override
+    public JSONObject getJSONObject() {
+        return object;
     }
 }

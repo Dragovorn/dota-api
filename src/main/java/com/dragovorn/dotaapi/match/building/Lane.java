@@ -7,7 +7,7 @@ package com.dragovorn.dotaapi.match.building;
  * @version 1.1
  * @since 0.0.1
  */
-public enum BuildingLane {
+public enum Lane {
     BOT,
     MID,
     TOP

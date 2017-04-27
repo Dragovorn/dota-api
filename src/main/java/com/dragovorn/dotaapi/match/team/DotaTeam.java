@@ -1,23 +1,23 @@
 package com.dragovorn.dotaapi.match.team;
 
 import com.dragovorn.dotaapi.match.building.Building;
-import com.dragovorn.dotaapi.match.building.BuildingLane;
-import com.dragovorn.dotaapi.match.building.BuildingType;
+import com.dragovorn.dotaapi.match.building.Lane;
+import com.dragovorn.dotaapi.match.building.Type;
 import com.dragovorn.dotaapi.match.building.IBuilding;
 import com.dragovorn.dotaapi.match.player.IPlayer;
 import com.google.common.collect.ImmutableList;
 
 import java.util.List;
 
-public class DotaTeam implements ITeam<TeamSide> {
+public class DotaTeam implements ITeam<Side> {
 
-    private final TeamSide side;
+    private final Side side;
 
     private final ImmutableList<IBuilding> buildings;
 
     private final boolean won;
 
-    public DotaTeam(TeamSide side, int towerStatus, int raxStatus, boolean won) {
+    public DotaTeam(Side side, int towerStatus, int raxStatus, boolean won) {
         this.side = side;
         this.won = won;
 
@@ -25,15 +25,25 @@ public class DotaTeam implements ITeam<TeamSide> {
         buildings.addAll(Building.deduceFromDecimal(raxStatus, true));
 
         if (won) {
-            buildings.add(new Building(BuildingType.ANCIENT, BuildingLane.MID, 0));
+            buildings.add(new Building(Type.ANCIENT, Lane.MID, 0));
         }
 
         this.buildings = new ImmutableList.Builder<IBuilding>().addAll(buildings).build();
     }
 
     @Override
-    public boolean hasBuilding(BuildingType type, BuildingLane lane, int tier) {
-        return false;
+    public boolean hasBuilding(Type type, Lane lane, int tier) {
+        Building building = null;
+
+        for (IBuilding buildings : this.buildings) {
+            Building build = (Building) buildings;
+
+            if (type == build.getType() && lane == build.getLane() && tier == build.getTier()) {
+                building = build;
+            }
+        }
+
+        return building != null;
     }
 
     @Override
@@ -52,7 +62,7 @@ public class DotaTeam implements ITeam<TeamSide> {
     }
 
     @Override
-    public TeamSide getSide() {
+    public Side getSide() {
         return this.side;
     }
 

@@ -1,10 +1,10 @@
 package com.dragovorn.dotaapi.match.building;
 
-public interface IBuilding<T, L> {
+public interface IBuilding {
 
-    T getType();
+    Type getType();
 
-    L getLane();
+    Lane getLane();
 
     int getTier();
 }

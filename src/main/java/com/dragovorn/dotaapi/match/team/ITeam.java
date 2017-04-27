@@ -1,7 +1,7 @@
 package com.dragovorn.dotaapi.match.team;
 
-import com.dragovorn.dotaapi.match.building.BuildingLane;
-import com.dragovorn.dotaapi.match.building.BuildingType;
+import com.dragovorn.dotaapi.match.building.Lane;
+import com.dragovorn.dotaapi.match.building.Type;
 import com.dragovorn.dotaapi.match.building.IBuilding;
 import com.dragovorn.dotaapi.match.player.IPlayer;
 import com.google.common.collect.ImmutableList;
@@ -17,7 +17,7 @@ import com.google.common.collect.ImmutableList;
  */
 public interface ITeam<S> {
 
-    boolean hasBuilding(BuildingType type, BuildingLane lane, int tier);
+    boolean hasBuilding(Type type, Lane lane, int tier);
     boolean didWin();
 
     ImmutableList<IBuilding> getBuildings();
