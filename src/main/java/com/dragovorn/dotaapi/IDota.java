@@ -15,6 +15,8 @@ import java.util.List;
  */
 public interface IDota {
 
+    // 7534 (Is steam protocol for fetching profile cards)
+
     IMatch getMatchById(String id);
     IMatch getMatchBySeqId(String id);
 

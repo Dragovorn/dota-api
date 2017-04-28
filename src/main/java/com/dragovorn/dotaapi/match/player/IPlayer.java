@@ -9,7 +9,7 @@ public interface IPlayer {
 
     boolean isAnonymous();
 
-    long getPlayerId();
+    long getAccountId();
 
     int getGold();
 

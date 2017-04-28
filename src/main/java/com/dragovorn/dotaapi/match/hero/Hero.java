@@ -1,4 +1,137 @@
 package com.dragovorn.dotaapi.match.hero;
 
 public enum Hero {
+
+    ANTIMAGE(1),
+    AXE(2),
+    BANE(3),
+    BLOODSEEKER(4),
+    CRYSTAL_MAIDEN(5),
+    DROW_RANGER(6),
+    EARTHSHAKER(7),
+    JUGGERNAUT(8),
+    MIRANA(9),
+    MORPHLING(10),
+    SHADOW_FIEND(11),
+    PHANTOM_LANCER(12),
+    PUCK(13),
+    PUDGE(14),
+    RAZOR(15),
+    SAND_KING(16),
+    STORM_SPIRIT(17),
+    SVEN(18),
+    TINY(19),
+    VENGEFUL_SPIRIT(20),
+    WINDRANGER(21),
+    ZEUS(22),
+    KUNKKA(23),
+    LINA(25),
+    LION(26),
+    SHADOW_SHAMAN(27),
+    SLARDAR(28),
+    TIDEHUNTER(29),
+    WITCH_DOCTOR(30),
+    LICH(31),
+    RIKI(32),
+    ENIGMA(33),
+    TINKER(34),
+    SNIPER(35),
+    NECROPHOS(36),
+    WARLOCK(37),
+    BEASTMASTER(38),
+    QUEEN_OF_PAIN(39),
+    VENOMANCER(40),
+    FACELESS_VOID(41),
+    WRAITH_KING(42),
+    DEATH_PROPHET(43),
+    PHANTOM_ASSASSIN(44),
+    PUGNA(45),
+    TEMPLAR_ASSASSIN(46),
+    VIPER(47),
+    LUNA(48),
+    DRAGON_KNIGHT(49),
+    DAZZLE(50),
+    CLOCKWERK(51),
+    LESHRAC(52),
+    NATURES_PROPHET(53),
+    LIFESTEALER(54),
+    DARK_SEER(55),
+    CLINKZ(56),
+    OMNIKNIGHT(57),
+    ENCHANTRESS(58),
+    HUSKAR(59),
+    NIGHT_STALKER(60),
+    BROODMOTHER(61),
+    BOUNTY_HUNTER(62),
+    WEAVER(63),
+    JAKIRO(64),
+    BATRIDER(65),
+    CHEN(66),
+    SPECTRE(67),
+    ANCIENT_APPARITION(68),
+    DOOM(69),
+    URSA(70),
+    SPIRIT_BREAKER(71),
+    GYROCOPTER(72),
+    ALCHEMIST(73),
+    INVOKER(74),
+    SILENCER(75),
+    OUTWORLD_DEVOURER(76),
+    LYCAN(77),
+    BREWMASTER(78),
+    SHADOW_DEMON(79),
+    LONE_DRUID(80),
+    CHAOS_KNIGHT(81),
+    MEEPO(82),
+    TREANT_PROTECTOR(83),
+    OGRE_MAGI(84),
+    UNDYING(85),
+    RUBICK(86),
+    DISRUPTER(87),
+    NYX_ASSASSIN(88),
+    NAGA_SIREN(89),
+    KEEPER_OF_THE_LIGHT(90),
+    IO(91),
+    VISAGE(92),
+    SLARK(93),
+    MEDUSA(94),
+    TROLL_WARLORD(95),
+    CENTAUR_WARRUNNER(96),
+    MAGNUS(97),
+    TIMBERSAW(98),
+    BRISTLEBACK(99),
+    TUSK(100),
+    SKYWRATH_MAGE(101),
+    ABADDON(102),
+    ELDER_TITAN(103),
+    LEGION_COMMANDER(104),
+    TECHIES(105),
+    EMBER_SPIRIT(106),
+    EARTH_SPIRIT(107),
+    UNDERLORD(108),
+    TERRORBLADE(109),
+    PHOENIX(110),
+    ORACLE(111),
+    WINTER_WYVERN(112),
+    ARC_WARDEN(113);
+
+    private int id;
+
+    Hero(int id) {
+        this.id = id;
+    }
+
+    public int id() {
+        return this.id;
+    }
+
+    public static Hero getFromId(int id) {
+        for (Hero hero : values()) {
+            if (hero.id() == id) {
+                return hero;
+            }
+        }
+
+        return null;
+    }
 }
