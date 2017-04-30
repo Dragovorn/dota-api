@@ -65,15 +65,4 @@ public class DotaTeam implements ITeam<Side> {
     public Side getSide() {
         return this.side;
     }
-
-    @Override
-    public boolean equals(Object object) {
-        if (!(object instanceof ITeam<?>)) {
-            return false;
-        }
-
-        ITeam<?> team = (ITeam<?>) object;
-
-        return (this.won == team.didWin()) && (this.buildings.equals(team.getBuildings())) && (this.side.equals(team.getSide()));
-    }
 }

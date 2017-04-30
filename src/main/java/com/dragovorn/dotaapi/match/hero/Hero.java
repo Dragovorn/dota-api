@@ -113,9 +113,10 @@ public enum Hero {
     PHOENIX(110),
     ORACLE(111),
     WINTER_WYVERN(112),
-    ARC_WARDEN(113);
+    ARC_WARDEN(113),
+    MONKEY_KING(114);
 
-    private int id;
+    private final int id;
 
     Hero(int id) {
         this.id = id;
