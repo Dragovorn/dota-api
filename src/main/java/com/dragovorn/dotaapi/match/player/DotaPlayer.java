@@ -8,6 +8,9 @@ import org.json.JSONObject;
 
 public class DotaPlayer implements IPlayer {
 
+    private ImmutableList<Item> inventory;
+    private ImmutableList<Item> backpack;
+
     private Hero hero;
 
     private LeaverStatus leaverStatus;
@@ -38,8 +41,8 @@ public class DotaPlayer implements IPlayer {
         this.gold = object.getInt("gold");
         this.goldSpent = object.getInt("gold_spent");
         this.networth = this.gold + this.goldSpent;
-        this.gpm = object.getInt("gold_per_minute");
-        this.xpm = object.getInt("xp_per_minute");
+        this.gpm = object.getInt("gold_per_min");
+        this.xpm = object.getInt("xp_per_min");
         this.level = object.getInt("level");
         this.lasthits = object.getInt("last_hits");
         this.denies = object.getInt("denies");
@@ -48,6 +51,22 @@ public class DotaPlayer implements IPlayer {
         this.heroHealing = object.getInt("hero_healing");
         this.hero = Hero.getFromId(object.getInt("hero_id"));
         this.leaverStatus = LeaverStatus.values()[object.getInt("leaver_status")];
+
+        ImmutableList.Builder<Item> builder = new ImmutableList.Builder<>();
+
+        for (int x = 0; x < 6; x++) {
+            builder.add(Item.fromId(object.getInt("item_" + x)));
+        }
+
+        this.inventory = builder.build();
+
+        builder = new ImmutableList.Builder<>();
+
+        for (int x = 0; x < 3; x++) {
+            builder.add(Item.fromId(object.getInt("backpack_" + x)));
+        }
+
+        this.backpack = builder.build();
     }
 
     @Override
@@ -131,13 +150,13 @@ public class DotaPlayer implements IPlayer {
     }
 
     @Override
-    public ImmutableList<Item> getActiveItems() {
-        return null;
+    public ImmutableList<Item> getInventory() {
+        return this.inventory;
     }
 
     @Override
-    public ImmutableList<Item> getBackpackItems() {
-        return null;
+    public ImmutableList<Item> getBackpack() {
+        return this.backpack;
     }
 
     @Override
@@ -153,5 +172,10 @@ public class DotaPlayer implements IPlayer {
     @Override
     public LeaverStatus getLeaverStatus() {
         return this.leaverStatus;
+    }
+
+    @Override
+    public String toString() {
+        return this.hero.toString();
     }
 }

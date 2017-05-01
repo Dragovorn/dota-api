@@ -1,10 +1,14 @@
 package com.dragovorn.dotaapi.match;
 
+import com.dragovorn.dotaapi.match.player.DotaPlayer;
+import com.dragovorn.dotaapi.match.player.IPlayer;
 import com.dragovorn.dotaapi.match.team.DotaTeam;
 import com.dragovorn.dotaapi.match.team.ITeam;
 import com.dragovorn.dotaapi.match.team.Side;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -39,8 +43,28 @@ public class DotaMatch implements IMatch {
         this.duration = object.getInt("duration");
         this.firstBlood = object.getInt("first_blood_time");
         this.radiantWin = object.getBoolean("radiant_win");
-        this.radiant = new DotaTeam(Side.RADIANT, object.getInt("tower_status_radiant"), object.getInt("barracks_status_radiant"), this.radiantWin);
-        this.dire = new DotaTeam(Side.DIRE, object.getInt("tower_status_dire"), object.getInt("barracks_status_dire"), !this.radiantWin);
+
+        ArrayList<IPlayer> players = new ArrayList<>();
+
+        JSONArray array = object.getJSONArray("players");
+
+        for (int x = 0; x < 5; x++) {
+            JSONObject obj = array.getJSONObject(x);
+
+            players.add(new DotaPlayer(obj));
+        }
+
+        this.dire = new DotaTeam(Side.DIRE, object.getInt("tower_status_dire"), object.getInt("barracks_status_dire"), !this.radiantWin, players);
+
+        players.clear();
+
+        for (int x = 5; x < 10; x++) {
+            JSONObject obj = array.getJSONObject(x);
+
+            players.add(new DotaPlayer(obj));
+        }
+
+        this.radiant = new DotaTeam(Side.RADIANT, object.getInt("tower_status_radiant"), object.getInt("barracks_status_radiant"), this.radiantWin, players);
     }
 
     @Override

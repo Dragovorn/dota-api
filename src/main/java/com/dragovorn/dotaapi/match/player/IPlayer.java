@@ -39,9 +39,9 @@ public interface IPlayer {
 
     int getGPM();
 
-    ImmutableList<Item> getActiveItems();
+    ImmutableList<Item> getInventory();
 
-    ImmutableList<Item> getBackpackItems();
+    ImmutableList<Item> getBackpack();
 
     ImmutableList<Ability> getAbilities();
 

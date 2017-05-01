@@ -133,6 +133,6 @@ public enum Hero {
             }
         }
 
-        return null;
+        throw new IllegalArgumentException("There is no hero " + id);
     }
 }

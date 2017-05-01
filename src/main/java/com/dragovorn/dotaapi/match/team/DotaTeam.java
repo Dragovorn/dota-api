@@ -15,11 +15,14 @@ public class DotaTeam implements ITeam<Side> {
 
     private final ImmutableList<IBuilding> buildings;
 
+    private final ImmutableList<IPlayer> players;
+
     private final boolean won;
 
-    public DotaTeam(Side side, int towerStatus, int raxStatus, boolean won) {
+    public DotaTeam(Side side, int towerStatus, int raxStatus, boolean won, List<IPlayer> players) {
         this.side = side;
         this.won = won;
+        this.players = new ImmutableList.Builder<IPlayer>().addAll(players).build();
 
         List<IBuilding> buildings = Building.deduceFromDecimal(towerStatus, false);
         buildings.addAll(Building.deduceFromDecimal(raxStatus, true));
@@ -58,7 +61,7 @@ public class DotaTeam implements ITeam<Side> {
 
     @Override
     public ImmutableList<IPlayer> getPlayers() {
-        return null;
+        return this.players;
     }
 
     @Override

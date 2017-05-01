@@ -1,6 +1,8 @@
 package com.dragovorn.dotaapi.match;
 
 import com.dragovorn.dotaapi.MatchJSON;
+import com.dragovorn.dotaapi.match.hero.Hero;
+import com.dragovorn.dotaapi.match.player.IPlayer;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -18,5 +20,11 @@ public class TestMatch {
     @Test
     public void testWinner() {
         assertEquals(this.match.getRadiant(), this.match.getWinner());
+    }
+
+    @Test
+    public void testInventory() {
+        assertEquals(Hero.AXE, ((IPlayer) this.match.getRadiant().getPlayers().get(0)).getHero());
+        assertEquals(Hero.ANTIMAGE, ((IPlayer) this.match.getRadiant().getPlayers().get(1)).getHero());
     }
 }

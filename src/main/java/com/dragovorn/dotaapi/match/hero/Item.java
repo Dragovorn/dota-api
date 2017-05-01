@@ -2,6 +2,7 @@ package com.dragovorn.dotaapi.match.hero;
 
 public enum Item {
 
+    NONE(0, 0, false, false, false),
     BLINK(1, 2250, true, false, false),
     BLADES_OF_ATTACK(2, 420, true, false, false),
     BROADSWORD(3, 1200, true, false, false),
@@ -277,11 +278,11 @@ public enum Item {
         this.recipe = recipe;
     }
 
-    public int getId() {
+    public int id() {
         return this.id;
     }
 
-    public int getCost() {
+    public int cost() {
         return this.cost;
     }
 
@@ -295,5 +296,15 @@ public enum Item {
 
     public boolean isRecipe() {
         return this.recipe;
+    }
+
+    public static Item fromId(int id) {
+        for (Item item : values()) {
+            if (item.id() == id) {
+                return item;
+            }
+        }
+
+        throw new IllegalArgumentException("There is no item " + id);
     }
 }
