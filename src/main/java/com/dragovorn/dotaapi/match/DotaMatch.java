@@ -54,7 +54,7 @@ public class DotaMatch implements IMatch {
             players.add(new DotaPlayer(obj));
         }
 
-        this.dire = new DotaTeam(Side.DIRE, object.getInt("tower_status_dire"), object.getInt("barracks_status_dire"), !this.radiantWin, players);
+        this.radiant = new DotaTeam(Side.RADIANT, object.getInt("tower_status_radiant"), object.getInt("barracks_status_radiant"), this.radiantWin, players);
 
         players.clear();
 
@@ -64,7 +64,7 @@ public class DotaMatch implements IMatch {
             players.add(new DotaPlayer(obj));
         }
 
-        this.radiant = new DotaTeam(Side.RADIANT, object.getInt("tower_status_radiant"), object.getInt("barracks_status_radiant"), this.radiantWin, players);
+        this.dire = new DotaTeam(Side.DIRE, object.getInt("tower_status_dire"), object.getInt("barracks_status_dire"), !this.radiantWin, players);
     }
 
     @Override
