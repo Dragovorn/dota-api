@@ -4,12 +4,15 @@ import com.dragovorn.dotaapi.match.hero.Ability;
 import com.dragovorn.dotaapi.match.hero.Hero;
 import com.dragovorn.dotaapi.match.hero.Item;
 import com.google.common.collect.ImmutableList;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class DotaPlayer implements IPlayer {
 
     private ImmutableList<Item> inventory;
     private ImmutableList<Item> backpack;
+
+    private ImmutableList<Ability> abilities;
 
     private Hero hero;
 
@@ -52,21 +55,33 @@ public class DotaPlayer implements IPlayer {
         this.hero = Hero.getFromId(object.getInt("hero_id"));
         this.leaverStatus = LeaverStatus.values()[object.getInt("leaver_status")];
 
-        ImmutableList.Builder<Item> builder = new ImmutableList.Builder<>();
+        ImmutableList.Builder<Item> items = new ImmutableList.Builder<>();
 
         for (int x = 0; x < 6; x++) {
-            builder.add(Item.fromId(object.getInt("item_" + x)));
+            items.add(Item.fromId(object.getInt("item_" + x)));
         }
 
-        this.inventory = builder.build();
+        this.inventory = items.build();
 
-        builder = new ImmutableList.Builder<>();
+        items = new ImmutableList.Builder<>();
 
         for (int x = 0; x < 3; x++) {
-            builder.add(Item.fromId(object.getInt("backpack_" + x)));
+            items.add(Item.fromId(object.getInt("backpack_" + x)));
         }
 
-        this.backpack = builder.build();
+        this.backpack = items.build();
+
+        ImmutableList.Builder<Ability> abilities = new ImmutableList.Builder<>();
+
+        JSONArray array = object.getJSONArray("ability_upgrades");
+
+        for (Object obj : array) {
+            JSONObject jsonObject = (JSONObject) obj;
+
+            abilities.add(new Ability(jsonObject.getInt("ability"), jsonObject.getInt("level"), jsonObject.getInt("time")));
+        }
+
+        this.abilities = abilities.build();
     }
 
     @Override
@@ -161,7 +176,7 @@ public class DotaPlayer implements IPlayer {
 
     @Override
     public ImmutableList<Ability> getAbilities() {
-        return null;
+        return abilities;
     }
 
     @Override

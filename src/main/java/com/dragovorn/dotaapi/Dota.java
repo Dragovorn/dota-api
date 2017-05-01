@@ -1,6 +1,8 @@
 package com.dragovorn.dotaapi;
 
+import com.dragovorn.dotaapi.match.DotaMatch;
 import com.dragovorn.dotaapi.match.IMatch;
+import com.google.common.base.Throwables;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -45,6 +47,10 @@ public class Dota implements IDota {
         return new JSONObject(EntityUtils.toString(response.getEntity(), "UTF-8"));
     }
 
+    private JSONObject makeApiRequest(Call call) throws IOException {
+        return makeApiRequest(call, "");
+    }
+
     private HttpGet makeGetRequest(String url) {
         HttpGet request = new HttpGet(url);
         request.addHeader("content-type", "application/json");
@@ -53,22 +59,30 @@ public class Dota implements IDota {
     }
 
     @Override
-    public IMatch getMatchById(String id) {
+    public IMatch getMatchById(long id) {
+        try {
+            return new DotaMatch(makeApiRequest(Call.GETMATCHDETAILS, "&match_id=" + id));
+        } catch (IOException exception) {
+            throw Throwables.propagate(exception);
+        }
+    }
+
+    @Override
+    public IMatch getMatchBySeqId(long id) {
+        try {
+            return new DotaMatch(makeApiRequest(Call.GETMATCHSEQUENCENUM, "&matches_requested=" + id));
+        } catch (IOException exception) {
+            throw Throwables.propagate(exception);
+        }
+    }
+
+    @Override
+    public List<IMatch> getMatchesById(long id, int num) {
         return null;
     }
 
     @Override
-    public IMatch getMatchBySeqId(String id) {
-        return null;
-    }
-
-    @Override
-    public List<IMatch> getMatchesById(String id, int num) {
-        return null;
-    }
-
-    @Override
-    public List<IMatch> getMatchesBySeqId(String id, int num) {
+    public List<IMatch> getMatchesBySeqId(long id, int num) {
         return null;
     }
 }

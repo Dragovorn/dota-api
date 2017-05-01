@@ -10,16 +10,16 @@ import java.util.List;
  * of the API. Default implementation: {@link Dota}.
  *
  * @author Andrew Burr
- * @version 0.1
+ * @version 0.2
  * @since 0.0.1
  */
 public interface IDota {
 
     // 7534 (Is steam protocol for fetching profile cards)
 
-    IMatch getMatchById(String id);
-    IMatch getMatchBySeqId(String id);
+    IMatch getMatchById(long id);
+    IMatch getMatchBySeqId(long id);
 
-    List<IMatch> getMatchesById(String id, int num);
-    List<IMatch> getMatchesBySeqId(String id, int num);
+    List<IMatch> getMatchesById(long id, int num);
+    List<IMatch> getMatchesBySeqId(long id, int num);
 }

@@ -1,6 +1,7 @@
 package com.dragovorn.dotaapi.match;
 
 import com.dragovorn.dotaapi.MatchJSON;
+import com.dragovorn.dotaapi.match.hero.Ability;
 import com.dragovorn.dotaapi.match.hero.Hero;
 import com.dragovorn.dotaapi.match.player.IPlayer;
 import org.junit.Test;
@@ -24,7 +25,12 @@ public class TestMatch {
 
     @Test
     public void testInventory() {
-        assertEquals(Hero.AXE, ((IPlayer) this.match.getRadiant().getPlayers().get(0)).getHero());
-        assertEquals(Hero.ANTIMAGE, ((IPlayer) this.match.getRadiant().getPlayers().get(1)).getHero());
+        assertEquals(Hero.AXE, ((IPlayer) this.match.getDire().getPlayers().get(0)).getHero());
+        assertEquals(Hero.ANTIMAGE, ((IPlayer) this.match.getDire().getPlayers().get(1)).getHero());
+    }
+
+    @Test
+    public void testAbilities() {
+        assertEquals(Ability.Type.PUDGE_MEAT_HOOK, ((IPlayer) this.match.getRadiant().getPlayers().get(0)).getAbilities().get(0).getType());
     }
 }
