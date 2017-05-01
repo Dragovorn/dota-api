@@ -61,7 +61,7 @@ public class Dota implements IDota {
     @Override
     public IMatch getMatchById(long id) {
         try {
-            return new DotaMatch(makeApiRequest(Call.GETMATCHDETAILS, "&match_id=" + id));
+            return new DotaMatch(makeApiRequest(Call.GETMATCHDETAILS, "&match_id=" + id).getJSONObject("result"));
         } catch (IOException exception) {
             throw Throwables.propagate(exception);
         }
@@ -70,7 +70,7 @@ public class Dota implements IDota {
     @Override
     public IMatch getMatchBySeqId(long id) {
         try {
-            return new DotaMatch(makeApiRequest(Call.GETMATCHSEQUENCENUM, "&matches_requested=" + id));
+            return new DotaMatch(makeApiRequest(Call.GETMATCHSEQUENCENUM, "&matches_requested=" + id).getJSONObject("result"));
         } catch (IOException exception) {
             throw Throwables.propagate(exception);
         }
