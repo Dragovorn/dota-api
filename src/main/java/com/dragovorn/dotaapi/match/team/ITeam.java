@@ -13,9 +13,8 @@ import com.google.common.collect.ImmutableList;
  * @since 0.0.1
  * @version 1
  * @author Andrew Burr
- * @param <S> The TeamSide (Radiant, Dire) indicator.
  */
-public interface ITeam<S> {
+public interface ITeam {
 
     boolean hasBuilding(Type type, Lane lane, int tier);
     boolean didWin();
@@ -24,5 +23,5 @@ public interface ITeam<S> {
 
     ImmutableList<IPlayer> getPlayers();
 
-    S getSide();
+    Side getSide();
 }

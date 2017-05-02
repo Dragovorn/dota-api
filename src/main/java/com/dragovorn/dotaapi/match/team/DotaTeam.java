@@ -9,7 +9,7 @@ import com.google.common.collect.ImmutableList;
 
 import java.util.List;
 
-public class DotaTeam implements ITeam<Side> {
+public class DotaTeam implements ITeam {
 
     private final Side side;
 
