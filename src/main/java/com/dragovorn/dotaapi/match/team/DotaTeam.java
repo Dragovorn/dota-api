@@ -17,9 +17,11 @@ public class DotaTeam implements ITeam {
 
     private final ImmutableList<IPlayer> players;
 
+    private final int score;
+
     private final boolean won;
 
-    public DotaTeam(Side side, int towerStatus, int raxStatus, boolean won, List<IPlayer> players) {
+    public DotaTeam(Side side, int towerStatus, int raxStatus, boolean won, List<IPlayer> players, int score) {
         this.side = side;
         this.won = won;
         this.players = new ImmutableList.Builder<IPlayer>().addAll(players).build();
@@ -32,6 +34,7 @@ public class DotaTeam implements ITeam {
         }
 
         this.buildings = new ImmutableList.Builder<IBuilding>().addAll(buildings).build();
+        this.score = score;
     }
 
     @Override
@@ -52,6 +55,11 @@ public class DotaTeam implements ITeam {
     @Override
     public boolean didWin() {
         return this.won;
+    }
+
+    @Override
+    public int getScore() {
+        return this.score;
     }
 
     @Override

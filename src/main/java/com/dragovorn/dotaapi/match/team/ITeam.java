@@ -19,6 +19,8 @@ public interface ITeam {
     boolean hasBuilding(Type type, Lane lane, int tier);
     boolean didWin();
 
+    int getScore();
+
     ImmutableList<IBuilding> getBuildings();
 
     ImmutableList<IPlayer> getPlayers();
