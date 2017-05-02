@@ -31,7 +31,7 @@ import java.util.Date;
  * Represents a match of Dota. Simple implementation found at {@link com.dragovorn.dotaapi.match.DotaMatch}.
  *
  * @author Andrew Burr
- * @version 0.5
+ * @version 0.6
  * @since 0.0.1
  */
 public interface IMatch {
@@ -98,6 +98,13 @@ public interface IMatch {
      * @return The Winning Team.
      */
     ITeam getWinner();
+
+    /**
+     * Returns the team that lost the match.
+     *
+     * @return The Losing Team.
+     */
+    ITeam getLoser();
 
     /**
      * Returns the JSON used to generate this object.

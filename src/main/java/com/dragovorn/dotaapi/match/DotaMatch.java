@@ -113,6 +113,11 @@ public class DotaMatch implements IMatch {
     }
 
     @Override
+    public ITeam getLoser() {
+        return (this.radiantWin ? this.dire : this.radiant);
+    }
+
+    @Override
     public JSONObject getJSONObject() {
         return object;
     }
