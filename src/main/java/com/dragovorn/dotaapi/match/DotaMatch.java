@@ -38,6 +38,11 @@ public class DotaMatch implements IMatch {
 
     private final int duration;
     private final int firstBlood;
+    private final int cluster;
+    private final int negativeVotes;
+    private final int positiveVotes;
+    private final int engine;
+    private final int leagueId;
 
     private final boolean radiantWin;
 
@@ -48,6 +53,11 @@ public class DotaMatch implements IMatch {
         this.matchSeqId = object.getLong("match_seq_num");
         this.duration = object.getInt("duration");
         this.firstBlood = object.getInt("first_blood_time");
+        this.cluster = object.getInt("cluster");
+        this.negativeVotes = object.getInt("negative_votes");
+        this.positiveVotes = object.getInt("positive_votes");
+        this.engine = object.getInt("engine");
+        this.leagueId = object.getInt("leagueid");
         this.radiantWin = object.getBoolean("radiant_win");
         this.mode = GameMode.values()[object.getInt("game_mode")];
         this.type = LobbyType.fromId(object.getInt("lobby_type"));
@@ -83,6 +93,31 @@ public class DotaMatch implements IMatch {
     @Override
     public int getDuration() {
         return this.duration;
+    }
+
+    @Override
+    public int getCluster() {
+        return this.cluster;
+    }
+
+    @Override
+    public int getNegativeVotes() {
+        return this.negativeVotes;
+    }
+
+    @Override
+    public int getPositiveVotes() {
+        return this.positiveVotes;
+    }
+
+    @Override
+    public int getEngine() {
+        return this.engine;
+    }
+
+    @Override
+    public int getLeagueId() {
+        return this.leagueId;
     }
 
     @Override

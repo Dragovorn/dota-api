@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Object that represents a building in a match
+ * Default implementation of {@link IBuilding}
  *
  * @author Andrew Burr
  * @version 1.1
@@ -21,8 +21,8 @@ public class Building implements IBuilding {
     /**
      * Basic constructor for a building
      *
-     * @param type Type of building.
-     * @param lane Lane of the building.
+     * @param type {@link Type} of building.
+     * @param lane {@link Lane} of the building.
      * @param tier Tier of the building.
      */
     public Building(Type type, Lane lane, int tier) {
@@ -31,31 +31,16 @@ public class Building implements IBuilding {
         this.tier = tier;
     }
 
-    /**
-     * Gets the type of building.
-     *
-     * @return The type of building.
-     */
     @Override
     public Type getType() {
         return this.type;
     }
 
-    /**
-     * Gets the lane of the building.
-     *
-     * @return The lane of the building.
-     */
     @Override
     public Lane getLane() {
         return this.lane;
     }
 
-    /**
-     * Gets the tier of the building.
-     *
-     * @return The tier of the building.
-     */
     @Override
     public int getTier() {
         return this.tier;

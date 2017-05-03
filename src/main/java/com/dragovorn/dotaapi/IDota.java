@@ -17,9 +17,35 @@ public interface IDota {
 
     // 7534 (Is steam protocol for fetching profile cards)
 
+    /**
+     * Gets the a match by it's ID. (Doesn't cache the result, you'll have to do that)
+     *
+     * @param id The ID of the match you wish to get.
+     * @return The {@link IMatch} of the match.
+     */
     IMatch getMatchById(long id);
+
+    /**
+     * Gets the a match by it's Sequence ID. (Doesn't cache the result, you'll have to do that)
+     *
+     * @param id The Sequence ID of the match you wish to get.
+     * @return The {@link IMatch} of the match.
+     */
     IMatch getMatchBySeqId(long id);
 
+    /**
+     * Gets the a list of matches starting at the given ID. (Doesn't cache the results, you'll have to do that)
+     *
+     * @param id The ID to start at when bulk fetching matches.
+     * @return A {@link List} of {@link IMatch}es of the matches.
+     */
     List<IMatch> getMatchesById(long id, int num);
+
+    /**
+     * Gets the a list of matches starting at the given Sequence ID. (Doesn't cache the results, you'll have to do that)
+     *
+     * @param id The Sequence ID to start at when bulk fetching matches.
+     * @return A {@link List} of {@link IMatch}es of the matches.
+     */
     List<IMatch> getMatchesBySeqId(long id, int num);
 }

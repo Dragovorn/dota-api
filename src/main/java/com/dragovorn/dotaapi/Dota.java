@@ -8,13 +8,18 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Default Implementation of {@link IDota}.
+ *
+ * @author Andrew Burr
+ * @version 0.2
+ * @since 0.0.1
+ */
 public class Dota implements IDota {
 
     private final String key;
@@ -69,9 +74,13 @@ public class Dota implements IDota {
         }
     }
 
+    /**
+     * @deprecated unimplemented
+     */
+    @Deprecated
     @Override
     public IMatch getMatchBySeqId(long id) {
-        return getMatchesBySeqId(id, 1).get(0);
+        return null;
     }
 
     /**
@@ -83,24 +92,12 @@ public class Dota implements IDota {
         return null;
     }
 
+    /**
+     * @deprecated unimplemented
+     */
+    @Deprecated
     @Override
     public List<IMatch> getMatchesBySeqId(long id, int num) {
-        try {
-            ArrayList<IMatch> matches = new ArrayList<>();
-
-            JSONObject response = makeApiRequest(Call.GETMATCHSEQUENCENUM, "&match_id=" + id).getJSONObject("result");
-
-            JSONArray array = response.getJSONArray("matches");
-
-            for (Object object : array) {
-                JSONObject jsonObject = (JSONObject) object;
-
-                matches.add(new DotaMatch(jsonObject));
-            }
-
-            return matches;
-        } catch (IOException exception) {
-            throw Throwables.propagate(exception);
-        }
+        return null;
     }
 }

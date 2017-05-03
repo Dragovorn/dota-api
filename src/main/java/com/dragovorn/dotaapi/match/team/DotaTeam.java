@@ -44,8 +44,10 @@ public class DotaTeam implements ITeam {
         for (IBuilding buildings : this.buildings) {
             Building build = (Building) buildings;
 
-            if (type == build.getType() && lane == build.getLane() && tier == build.getTier()) {
-                building = build;
+            if (type == build.getType() && lane == build.getLane()) {
+                if (build.getType() == Type.ANCIENT || build.getType() == Type.MELEERAX || build.getType() == Type.RANGEDRAX || tier == build.getTier()) {
+                    building = build;
+                }
             }
         }
 

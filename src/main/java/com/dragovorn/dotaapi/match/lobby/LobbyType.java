@@ -30,6 +30,6 @@ public enum LobbyType {
             }
         }
 
-        throw new IllegalArgumentException();
+        return INVALID;
     }
 }

@@ -56,6 +56,41 @@ public interface IMatch {
     int getDuration();
 
     /**
+     * Returns the server cluster that the match was played on.
+     *
+     * @return The server cluster the match was played on
+     */
+    int getCluster();
+
+    /**
+     * Returns the number of negative votes on the match.
+     *
+     * @return The number of negative votes on the match.
+     */
+    int getNegativeVotes();
+
+    /**
+     * Returns the number of positive votes on the match.
+     *
+     * @return The number of positive votes on the match.
+     */
+    int getPositiveVotes();
+
+    /**
+     * @deprecated I don't know what purpose this value serves
+     * @return The engine number that the match was played on?
+     */
+    @Deprecated
+    int getEngine();
+
+    /**
+     * Returns the league id (if any) of the match
+     *
+     * @return The League Id of the match.
+     */
+    int getLeagueId();
+
+    /**
      * Returns the when first blood happened in the match.
      *
      * @return The First Blood of the match.

@@ -13,12 +13,12 @@ public class TestMatch {
 
     @Test
     public void testWinner() {
-        assertEquals(this.match.getRadiant(), this.match.getWinner());
+        assertEquals(true, this.match.getWinner().didWin());
     }
 
     @Test
     public void testLoser() {
-        assertEquals(this.match.getDire(), this.match.getLoser());
+        assertEquals(false, this.match.getLoser().didWin());
     }
 
     @Test
