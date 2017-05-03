@@ -22,4 +22,10 @@ public class TestTeam {
         assertEquals(false, this.match.getDire().hasBuilding(Type.ANCIENT, Lane.MID, 0));
         assertEquals(true, this.match.getRadiant().hasBuilding(Type.ANCIENT, Lane.MID, 0));
     }
+
+    @Test
+    public void testScore() {
+        assertEquals(54, this.match.getRadiant().getScore());
+        assertEquals(28, this.match.getDire().getScore());
+    }
 }

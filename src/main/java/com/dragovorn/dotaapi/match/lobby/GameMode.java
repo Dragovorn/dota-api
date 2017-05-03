@@ -1,0 +1,27 @@
+package com.dragovorn.dotaapi.match.lobby;
+
+public enum GameMode {
+    UNKNOWN,
+    ALL_PICK,
+    CAPTAINS_MODE,
+    RANDOM_DRAFT,
+    SINGLE_DRAFT,
+    ALL_RANDOM,
+    INTRO,
+    DIRETIDE,
+    REVERSE_CAPTAINS_MODE,
+    THE_GREEVLING,
+    TUTORIAL,
+    MID_ONLY,
+    LEAST_PLAYED,
+    NEW_PLAYER_POOL,
+    COMPENDIUM_MATCHMAKING,
+    CUSTOM,
+    CAPTAINS_DRAFT,
+    BALANCED_DRAFT,
+    ABILITY_DRAFT,
+    EVENT,
+    ALL_RANDOM_DEATH_MATCH,
+    SOLO_MID_1_V_1,
+    RANKED_ALL_PICK
+}

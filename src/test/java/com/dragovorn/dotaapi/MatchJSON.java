@@ -8,6 +8,8 @@ import java.io.IOException;
 
 public class MatchJSON {
 
+    // Maybe use Mockito to return this from Dota methods
+
     public static JSONObject MATCH;
 
     static {

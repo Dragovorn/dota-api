@@ -22,6 +22,8 @@
 
 package com.dragovorn.dotaapi.match;
 
+import com.dragovorn.dotaapi.match.lobby.GameMode;
+import com.dragovorn.dotaapi.match.lobby.LobbyType;
 import com.dragovorn.dotaapi.match.team.ITeam;
 import org.json.JSONObject;
 
@@ -31,12 +33,13 @@ import java.util.Date;
  * Represents a match of Dota. Simple implementation found at {@link com.dragovorn.dotaapi.match.DotaMatch}.
  *
  * @author Andrew Burr
- * @version 0.6
+ * @version 1
  * @since 0.0.1
  */
 public interface IMatch {
 
-    // Use 2933092997 to test CM stuff
+    // Use 2933092997 to test CM and LD stuff
+    // Use MATCHID to test BC stuff
 
     /**
      * Returns weather or not the Radiant team won.
@@ -76,37 +79,51 @@ public interface IMatch {
     /**
      * Returns when the match started
      *
-     * @return The start date of match.
+     * @return The start {@link Date} of match.
      */
     Date getStartTime();
 
     /**
-     * Returns the Radiant Team.
+     * Returns the Radiant {@link ITeam}.
      *
-     * @return The Radiant Team.
+     * @return The Radiant {@link ITeam}.
      */
     ITeam getRadiant();
 
     /**
-     * Returns the Dire Team.
+     * Returns the Dire {@link ITeam}.
      *
-     * @return The Dire Team.
+     * @return The Dire {@link ITeam}.
      */
     ITeam getDire();
 
     /**
-     * Returns the team that won the match.
+     * Returns the {@link ITeam} that won the match.
      *
-     * @return The Winning Team.
+     * @return The Winning {@link ITeam}.
      */
     ITeam getWinner();
 
     /**
-     * Returns the team that lost the match.
+     * Returns the {@link ITeam} that lost the match.
      *
-     * @return The Losing Team.
+     * @return The Losing {@link ITeam}.
      */
     ITeam getLoser();
+
+    /**
+     * Returns the {@link GameMode} that the match was.
+     *
+     * @return The {@link GameMode} of the match.
+     */
+    GameMode getGameMode();
+
+    /**
+     * Returns the {@link LobbyType} that the match was.
+     *
+     * @return The {@link LobbyType} of the match.
+     */
+    LobbyType getLobbyType();
 
     /**
      * Returns the JSON used to generate this object.

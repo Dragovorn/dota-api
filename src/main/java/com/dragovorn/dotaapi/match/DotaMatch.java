@@ -1,5 +1,7 @@
 package com.dragovorn.dotaapi.match;
 
+import com.dragovorn.dotaapi.match.lobby.GameMode;
+import com.dragovorn.dotaapi.match.lobby.LobbyType;
 import com.dragovorn.dotaapi.match.player.DotaPlayer;
 import com.dragovorn.dotaapi.match.player.IPlayer;
 import com.dragovorn.dotaapi.match.team.DotaTeam;
@@ -25,6 +27,10 @@ public class DotaMatch implements IMatch {
     private final ITeam radiant;
     private final ITeam dire;
 
+    private final GameMode mode;
+
+    private final LobbyType type;
+
     private final Date startTime;
 
     private final long matchId;
@@ -43,6 +49,8 @@ public class DotaMatch implements IMatch {
         this.duration = object.getInt("duration");
         this.firstBlood = object.getInt("first_blood_time");
         this.radiantWin = object.getBoolean("radiant_win");
+        this.mode = GameMode.values()[object.getInt("game_mode")];
+        this.type = LobbyType.fromId(object.getInt("lobby_type"));
 
         ArrayList<IPlayer> players = new ArrayList<>();
 
@@ -115,6 +123,16 @@ public class DotaMatch implements IMatch {
     @Override
     public ITeam getLoser() {
         return (this.radiantWin ? this.dire : this.radiant);
+    }
+
+    @Override
+    public GameMode getGameMode() {
+        return this.mode;
+    }
+
+    @Override
+    public LobbyType getLobbyType() {
+        return this.type;
     }
 
     @Override
