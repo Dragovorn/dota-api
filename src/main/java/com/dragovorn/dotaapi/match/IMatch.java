@@ -93,7 +93,7 @@ public interface IMatch {
     /**
      * Returns the when first blood happened in the match.
      *
-     * @return The First Blood of the match.
+     * @return The First Blood time of the match.
      */
     int getFirstBlood();
 
