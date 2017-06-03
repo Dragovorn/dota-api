@@ -15,8 +15,6 @@ import java.util.List;
  */
 public interface IDota {
 
-    // 7534 (Is steam protocol for fetching profile cards)
-
     /**
      * Gets the a match by it's ID. (Doesn't cache the result, you'll have to do that)
      *

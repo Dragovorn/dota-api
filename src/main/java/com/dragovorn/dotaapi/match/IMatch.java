@@ -38,9 +38,6 @@ import java.util.Date;
  */
 public interface IMatch {
 
-    // Use 2933092997 to test CM and LD stuff
-    // Use MATCHID to test BC stuff
-
     /**
      * Returns weather or not the Radiant team won.
      *

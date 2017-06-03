@@ -2,10 +2,12 @@ Dota 2 API
 ==========
 The Dota 2 API is a project I've been working on for a little while 
 the main aim of the project is to make a java port of the API for Dota 2 
-that is as developer friendly as possible, and with developer friendliness 
-comes extendability. The API is as modifiable as I could make it, if you 
-have some changes/modifications that you want to make to the API feel free 
-to fork it and make a pull request!
+that is as developer friendly as possible. Please note most of the enums are
+generated and that's why they have odd names, I'll get around to adding the enum
+generation code once I make non-spaghetti. Current plans for the new version of the
+enum generation look to be generating patch files at build and patching the enum
+classes with their respective enums, so that every build on Jenkins will ensure that
+the enums are kept up to date and maintained.
 
 Usage
 -----
@@ -29,7 +31,9 @@ Then you can make an object for the API by doing:
 IDota dota = new Dota("YOUR_API_KEY");
 ```
 
-Or you could download the [Latest Stable Release](http://build.dragovorn.com:8080/job/dota-api/lastStableBuild/ "Link To Latest Stable Release On Jenkins") from my Jenkins.
+Or you could download the [Latest Stable Release (Most likely a snapshot)](http://build.dragovorn.com:8080/job/dota-api/lastStableBuild/ "Link To Latest Stable Release On Jenkins") from my Jenkins.
+
+If you don't want a snapshot build you could always check the release section and click on the Jenkins link there to find the download for that version.
 
 Dependencies
 ------------
