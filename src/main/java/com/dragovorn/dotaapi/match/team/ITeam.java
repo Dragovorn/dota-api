@@ -8,7 +8,7 @@ import com.google.common.collect.ImmutableList;
 
 /**
  * Represents one of the two teams in an {@link com.dragovorn.dotaapi.match.IMatch} of Dota.
- * Simple Implementation found at {@link DotaTeam}
+ * Simple Implementation found at {@link DotaTeam}.
  *
  * @since 0.0.1
  * @version 1

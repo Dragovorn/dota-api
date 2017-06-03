@@ -5,6 +5,14 @@ import com.dragovorn.dotaapi.match.hero.Hero;
 import com.dragovorn.dotaapi.match.hero.Item;
 import com.google.common.collect.ImmutableList;
 
+/**
+ * Represents one of the 10 players in a {@link com.dragovorn.dotaapi.match.IMatch} of Dota.
+ * Simple implementation found at {@link DotaPlayer}.
+ *
+ * @since 0.0.1
+ * @version 1
+ * @author Andrew Burr
+ */
 public interface IPlayer {
 
     boolean isAnonymous();

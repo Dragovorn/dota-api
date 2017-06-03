@@ -1,5 +1,8 @@
 package com.dragovorn.dotaapi.match.hero;
 
+/**
+ * Represents an ability in Dota.
+ */
 public class Ability {
 
     private final int level;
@@ -29,6 +32,9 @@ public class Ability {
         return this.time;
     }
 
+    /**
+     * Auto generated ability type enum
+     */
     public enum Type {
         ABILITY_BASE(0),
         EMBER_SPIRIT_ACTIVATE_FIRE_REMNANT(5607),

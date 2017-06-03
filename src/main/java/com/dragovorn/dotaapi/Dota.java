@@ -2,24 +2,18 @@ package com.dragovorn.dotaapi;
 
 import com.dragovorn.dotaapi.match.DotaMatch;
 import com.dragovorn.dotaapi.match.IMatch;
-import com.google.common.base.Throwables;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Default Implementation of {@link IDota}.
- *
- * @author Andrew Burr
- * @version 0.2
- * @since 0.0.1
- */
 public class Dota implements IDota {
 
     private final String key;
@@ -51,7 +45,7 @@ public class Dota implements IDota {
     private JSONObject makeApiRequest(Call call, String params) throws IOException {
         HttpResponse response = this.client.execute(makeGetRequest(call.getUrl(this.key) + params));
 
-        return new JSONObject(EntityUtils.toString(response.getEntity(), "UTF-8"));
+        return new JSONObject(EntityUtils.toString(response.getEntity(), "UTF-8")).getJSONObject("result");
     }
 
     private JSONObject makeApiRequest(Call call) throws IOException {
@@ -68,36 +62,33 @@ public class Dota implements IDota {
     @Override
     public IMatch getMatchById(long id) {
         try {
-            return new DotaMatch(makeApiRequest(Call.GETMATCHDETAILS, "&match_id=" + id).getJSONObject("result"));
+            return new DotaMatch(makeApiRequest(Call.GETMATCHDETAILS, "&match_id=" + id));
         } catch (IOException exception) {
-            throw Throwables.propagate(exception);
+            throw new RuntimeException(exception);
         }
     }
 
-    /**
-     * @deprecated unimplemented
-     */
-    @Deprecated
     @Override
     public IMatch getMatchBySeqId(long id) {
-        return null;
+        return getMatchesStartingAtSeqId(id, 1).get(0);
     }
 
-    /**
-     * @deprecated unimplemented
-     */
-    @Deprecated
     @Override
-    public List<IMatch> getMatchesById(long id, int num) {
-        return null;
-    }
+    public List<IMatch> getMatchesStartingAtSeqId(long id, int num) {
+        ArrayList<IMatch> matches = new ArrayList<>();
 
-    /**
-     * @deprecated unimplemented
-     */
-    @Deprecated
-    @Override
-    public List<IMatch> getMatchesBySeqId(long id, int num) {
-        return null;
+        try {
+            JSONArray array = makeApiRequest(Call.GETMATCHSEQUENCENUM, "&start_at_match_seq_num=" + id + "&matches_requested=" + num).getJSONArray("matches");
+
+            array.forEach(obj -> {
+                JSONObject object = (JSONObject) obj;
+
+                matches.add(new DotaMatch(object));
+            });
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
+        }
+
+        return matches;
     }
 }

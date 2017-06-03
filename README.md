@@ -21,10 +21,30 @@ Then you can make it a dependency:
 <dependency>
     <groupId>com.dragovorn</groupId>
     <artifactId>dota-api</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
 </dependency>
 ```
 Then you can make an object for the API by doing:
 ```Java
 IDota dota = new Dota("YOUR_API_KEY");
 ```
+
+Or you could download the [Latest Stable Release](http://build.dragovorn.com:8080/job/dota-api/lastStableBuild/ "Link To Latest Stable Release On Jenkins") from my Jenkins.
+
+Dependencies
+------------
+- Guava
+- org.json
+- Apache HTTP
+
+**ALL DEPENDENCIES ARE SHADED INTO THE JAR!**
+
+License
+-------
+MIT
+
+Help Me!
+--------
+You could help by forking and improving the codebase/adding features, or if you want
+to help without much effort you could [Donate](https://twitch.streamlabs.com/dragovorn#/ "My Streamlabs Donation Link")
+or if you are interested in watching me play (or work) on [Twitch](https://twitch.tv/dragovorn "My Twitch Link")!

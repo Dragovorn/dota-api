@@ -1,5 +1,8 @@
 package com.dragovorn.dotaapi.match.hero;
 
+/**
+ * Auto generated item enum
+ */
 public enum Item {
 
     NONE(0, 0, false, false, false),

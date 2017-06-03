@@ -1,5 +1,8 @@
 package com.dragovorn.dotaapi.match.hero;
 
+/**
+ * Auto generated hero enum
+ */
 public enum Hero {
 
     ANTIMAGE(1),
