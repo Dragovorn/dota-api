@@ -35,6 +35,7 @@ public interface IDota {
      * Gets the a list of matches starting at the given Sequence ID. (Doesn't cache the results, you'll have to do that)
      *
      * @param id The Sequence ID to start at when bulk fetching matches.
+     * @param num The number of matches you want to fetch.
      * @return A {@link List} of {@link IMatch}es of the matches.
      */
     List<IMatch> getMatchesStartingAtSeqId(long id, int num);
