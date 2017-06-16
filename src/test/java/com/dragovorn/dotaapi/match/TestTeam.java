@@ -3,6 +3,7 @@ package com.dragovorn.dotaapi.match;
 import com.dragovorn.dotaapi.MatchJSON;
 import com.dragovorn.dotaapi.match.building.Lane;
 import com.dragovorn.dotaapi.match.building.Type;
+import com.dragovorn.dotaapi.match.team.Side;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -27,5 +28,11 @@ public class TestTeam {
     public void testScore() {
         assertEquals(54, this.match.getRadiant().getScore());
         assertEquals(28, this.match.getDire().getScore());
+    }
+
+    @Test
+    public void testSide() {
+        assertEquals(Side.RADIANT, this.match.getRadiant().getSide());
+        assertEquals(Side.DIRE, this.match.getDire().getSide());
     }
 }
