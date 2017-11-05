@@ -2,6 +2,7 @@ package com.dragovorn.dotaapi.match.hero.generated;
 
 public enum AbilityType {
 
+    UNKNOWN(0),
     SPECIAL_BONUS_UNIQUE_STORM_SPIRIT_2(6906),
     SPECIAL_BONUS_HP_800(6905),
     SPECIAL_BONUS_UNIQUE_STORM_SPIRIT_4(6908),

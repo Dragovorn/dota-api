@@ -2,6 +2,7 @@ package com.dragovorn.dotaapi.match.hero.generated;
 
 public enum Item {
 
+    UNKNOWN(0),
     RECIPE_GUARDIAN_GREAVES(230),
     REFRESHER(110),
     GUARDIAN_GREAVES(231),

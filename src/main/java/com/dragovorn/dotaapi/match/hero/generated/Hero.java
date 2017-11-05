@@ -2,6 +2,7 @@ package com.dragovorn.dotaapi.match.hero.generated;
 
 public enum Hero {
 
+    UNKNOWN(0),
     NPC_DOTA_HERO_NYX_ASSASSIN(88),
     NPC_DOTA_HERO_NAGA_SIREN(89),
     NPC_DOTA_HERO_PHOENIX(110),

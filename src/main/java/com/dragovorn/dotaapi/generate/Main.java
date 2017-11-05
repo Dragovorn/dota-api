@@ -62,6 +62,7 @@ public class Main {
         writer.newLine();
         writer.append("public enum ").append(className).append(" {\n");
         writer.newLine();
+        writer.append("    UNKNOWN(0),\n");
         object.keys().forEachRemaining(string -> {
             try {
 
