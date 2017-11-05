@@ -41,4 +41,6 @@ public interface IDota {
     List<IMatch> getMatchesStartingAtSeqId(long id, int num);
 
     List<IMatch> getMatchHistory();
+
+    List<IMatch> getMatchHistory(int num);
 }

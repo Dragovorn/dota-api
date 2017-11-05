@@ -7,6 +7,7 @@ import com.dragovorn.dotaapi.match.player.IPlayer;
 import com.dragovorn.dotaapi.match.team.DotaTeam;
 import com.dragovorn.dotaapi.match.team.ITeam;
 import com.dragovorn.dotaapi.match.team.Side;
+import com.google.common.collect.ImmutableList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -30,6 +31,8 @@ public class DotaMatch implements IMatch {
     private final GameMode mode;
 
     private final LobbyType type;
+
+    private final ImmutableList<IPlayer> players;
 
     private final Date startTime;
 
@@ -62,6 +65,8 @@ public class DotaMatch implements IMatch {
         this.mode = GameMode.values()[object.getInt("game_mode")];
         this.type = LobbyType.fromId(object.getInt("lobby_type"));
 
+        ImmutableList.Builder<IPlayer> builder = new ImmutableList.Builder<>();
+
         ArrayList<IPlayer> players = new ArrayList<>();
 
         JSONArray array = object.getJSONArray("players");
@@ -69,7 +74,10 @@ public class DotaMatch implements IMatch {
         for (int x = 0; x < 5; x++) {
             JSONObject obj = array.getJSONObject(x);
 
-            players.add(new DotaPlayer(obj));
+            DotaPlayer player = new DotaPlayer(obj);
+
+            builder.add(player);
+            players.add(player);
         }
 
         this.radiant = new DotaTeam(Side.RADIANT, object.getInt("tower_status_radiant"), object.getInt("barracks_status_radiant"), this.radiantWin, players, object.getInt("radiant_score"));
@@ -79,10 +87,14 @@ public class DotaMatch implements IMatch {
         for (int x = 5; x < 10; x++) {
             JSONObject obj = array.getJSONObject(x);
 
-            players.add(new DotaPlayer(obj));
+            DotaPlayer player = new DotaPlayer(obj);
+
+            builder.add(player);
+            players.add(player);
         }
 
         this.dire = new DotaTeam(Side.DIRE, object.getInt("tower_status_dire"), object.getInt("barracks_status_dire"), !this.radiantWin, players, object.getInt("dire_score"));
+        this.players = builder.build();
     }
 
     @Override
@@ -168,6 +180,11 @@ public class DotaMatch implements IMatch {
     @Override
     public LobbyType getLobbyType() {
         return this.type;
+    }
+
+    @Override
+    public ImmutableList<IPlayer> getPlayers() {
+        return this.players;
     }
 
     @Override

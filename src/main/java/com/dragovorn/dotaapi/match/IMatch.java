@@ -24,7 +24,9 @@ package com.dragovorn.dotaapi.match;
 
 import com.dragovorn.dotaapi.match.lobby.GameMode;
 import com.dragovorn.dotaapi.match.lobby.LobbyType;
+import com.dragovorn.dotaapi.match.player.IPlayer;
 import com.dragovorn.dotaapi.match.team.ITeam;
+import com.google.common.collect.ImmutableList;
 import org.json.JSONObject;
 
 import java.util.Date;
@@ -156,6 +158,8 @@ public interface IMatch {
      * @return The {@link LobbyType} of the match.
      */
     LobbyType getLobbyType();
+
+    ImmutableList<IPlayer> getPlayers();
 
     /**
      * Returns the JSON used to generate this object.

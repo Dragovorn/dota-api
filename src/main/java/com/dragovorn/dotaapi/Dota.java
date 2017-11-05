@@ -112,4 +112,15 @@ public class Dota implements IDota {
 
         return null;
     }
+
+    @Override
+    public List<IMatch> getMatchHistory(int num) {
+        try {
+            return getMatchesFromJSONArray(makeApiRequest(Call.GETMATCHHISTORY, "&matches_requested=" + num).getJSONArray("matches"), DotaMatchReduced.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 }

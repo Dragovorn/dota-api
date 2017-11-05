@@ -2,13 +2,12 @@ package com.dragovorn.dotaapi.match;
 
 import com.dragovorn.dotaapi.match.lobby.GameMode;
 import com.dragovorn.dotaapi.match.lobby.LobbyType;
-import com.dragovorn.dotaapi.match.player.DotaPlayer;
 import com.dragovorn.dotaapi.match.player.DotaPlayerReduced;
 import com.dragovorn.dotaapi.match.player.IPlayer;
-import com.dragovorn.dotaapi.match.team.DotaTeam;
 import com.dragovorn.dotaapi.match.team.DotaTeamReduced;
 import com.dragovorn.dotaapi.match.team.ITeam;
 import com.dragovorn.dotaapi.match.team.Side;
+import com.google.common.collect.ImmutableList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -18,6 +17,8 @@ import java.util.Date;
 public class DotaMatchReduced implements IMatch {
 
     private JSONObject object;
+
+    private ImmutableList<IPlayer> players;
 
     private LobbyType type;
 
@@ -36,6 +37,8 @@ public class DotaMatchReduced implements IMatch {
         this.matchId = object.getLong("match_id");
         this.type = LobbyType.fromId(object.getInt("lobby_type"));
 
+        ImmutableList.Builder<IPlayer> builder = new ImmutableList.Builder<>();
+
         ArrayList<IPlayer> players = new ArrayList<>();
 
         JSONArray array = object.getJSONArray("players");
@@ -43,7 +46,10 @@ public class DotaMatchReduced implements IMatch {
         for (int x = 0; x < 5; x++) {
             JSONObject obj = array.getJSONObject(x);
 
-            players.add(new DotaPlayerReduced(obj));
+            DotaPlayerReduced player = new DotaPlayerReduced(obj);
+
+            builder.add(player);
+            players.add(player);
         }
 
         this.radiant = new DotaTeamReduced(Side.RADIANT, players);
@@ -53,10 +59,14 @@ public class DotaMatchReduced implements IMatch {
         for (int x = 5; x < 10; x++) {
             JSONObject obj = array.getJSONObject(x);
 
-            players.add(new DotaPlayerReduced(obj));
+            DotaPlayerReduced player = new DotaPlayerReduced(obj);
+
+            builder.add(player);
+            players.add(player);
         }
 
         this.dire = new DotaTeamReduced(Side.DIRE, players);
+        this.players = builder.build();
     }
 
     @Override
@@ -142,6 +152,11 @@ public class DotaMatchReduced implements IMatch {
     @Override
     public LobbyType getLobbyType() {
         return this.type;
+    }
+
+    @Override
+    public ImmutableList<IPlayer> getPlayers() {
+        return this.players;
     }
 
     @Override
