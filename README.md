@@ -31,14 +31,6 @@ Then you can make an object for the API by doing:
 IDota dota = new Dota("YOUR_API_KEY");
 ```
 
-Or you could download the [Latest Stable Release (Most likely a snapshot)](http://build.dragovorn.com:8080/job/dota-api/lastStableBuild/ "Link To Latest Stable Release On Jenkins") from my Jenkins.
-
-If you don't want a snapshot build you could always check the release section and click on the Jenkins link there to find the download for that version.
-
-Documentation
--------------
-Documentation can be found on the [JavaDocs](http://build.dragovorn.com:8080/job/dota-api/javadoc/ "API Javadocs") (Javadocs are for the most recent snapshot)
-
 Dependencies
 ------------
 - Guava
