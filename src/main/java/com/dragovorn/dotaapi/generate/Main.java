@@ -40,9 +40,9 @@ public class Main {
         download(new URL("https://raw.githubusercontent.com/odota/dotaconstants/master/build/item_ids.json"), itemsJSON);
 
         try {
-            generate(heroesJSON, heroesOutput, "Hero", false);
-            generate(itemsJSON, itemsOutput, "Item", true);
-            generate(abilitiesJSON, abilitiesOutput, "AbilityType", true);
+            generate(heroesJSON, heroesOutput, "Hero", false, true);
+            generate(itemsJSON, itemsOutput, "Item", true, true);
+            generate(abilitiesJSON, abilitiesOutput, "AbilityType", true, false);
         } catch (IOException exception) {
             exception.printStackTrace();
         }
@@ -54,7 +54,7 @@ public class Main {
         fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
     }
 
-    private static void generate(File input, File output, String className, boolean isId) throws IOException {
+    private static void generate(File input, File output, String className, boolean isId, boolean haveUnknown) throws IOException {
         JSONObject object = new JSONObject(new JSONTokener(new FileReader(input)));
         BufferedWriter writer = new BufferedWriter(new FileWriter(output));
 
@@ -62,7 +62,9 @@ public class Main {
         writer.newLine();
         writer.append("public enum ").append(className).append(" {\n");
         writer.newLine();
-        writer.append("    UNKNOWN(0),\n");
+        if (haveUnknown) {
+            writer.append("    UNKNOWN(0),\n");
+        }
         object.keys().forEachRemaining(string -> {
             try {
 
