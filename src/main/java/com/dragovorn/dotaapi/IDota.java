@@ -10,7 +10,7 @@ import java.util.List;
  * of the API. Default implementation: {@link Dota}.
  *
  * @author Andrew Burr
- * @version 0.2
+ * @version 0.3
  * @since 0.0.1
  */
 public interface IDota {
@@ -39,4 +39,6 @@ public interface IDota {
      * @return A {@link List} of {@link IMatch}es of the matches.
      */
     List<IMatch> getMatchesStartingAtSeqId(long id, int num);
+
+    List<IMatch> getMatchHistory();
 }

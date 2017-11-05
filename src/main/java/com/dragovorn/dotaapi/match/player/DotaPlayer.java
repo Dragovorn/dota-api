@@ -1,8 +1,8 @@
 package com.dragovorn.dotaapi.match.player;
 
 import com.dragovorn.dotaapi.match.hero.Ability;
-import com.dragovorn.dotaapi.match.hero.Hero;
-import com.dragovorn.dotaapi.match.hero.Item;
+import com.dragovorn.dotaapi.match.hero.generated.Hero;
+import com.dragovorn.dotaapi.match.hero.generated.Item;
 import com.google.common.collect.ImmutableList;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -18,7 +18,6 @@ public class DotaPlayer implements IPlayer {
 
     private LeaverStatus leaverStatus;
 
-    public static final long ANONYMOUS = 4294967295L;
     private long accountId;
 
     private int kills;
@@ -52,7 +51,7 @@ public class DotaPlayer implements IPlayer {
         this.heroDamage = object.getInt("hero_damage");
         this.towerDamage = object.getInt("tower_damage");
         this.heroHealing = object.getInt("hero_healing");
-        this.hero = Hero.getFromId(object.getInt("hero_id"));
+        this.hero = Hero.fromId(object.getInt("hero_id"));
         this.leaverStatus = LeaverStatus.values()[object.getInt("leaver_status")];
 
         ImmutableList.Builder<Item> items = new ImmutableList.Builder<>();
@@ -86,7 +85,7 @@ public class DotaPlayer implements IPlayer {
 
     @Override
     public boolean isAnonymous() {
-        return accountId == ANONYMOUS;
+        return accountId == IPlayer.ANONYMOUS;
     }
 
     @Override

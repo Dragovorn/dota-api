@@ -1,8 +1,8 @@
 package com.dragovorn.dotaapi.match.player;
 
 import com.dragovorn.dotaapi.match.hero.Ability;
-import com.dragovorn.dotaapi.match.hero.Hero;
-import com.dragovorn.dotaapi.match.hero.Item;
+import com.dragovorn.dotaapi.match.hero.generated.Hero;
+import com.dragovorn.dotaapi.match.hero.generated.Item;
 import com.google.common.collect.ImmutableList;
 
 /**
@@ -14,6 +14,8 @@ import com.google.common.collect.ImmutableList;
  * @author Andrew Burr
  */
 public interface IPlayer {
+
+    long ANONYMOUS = 4294967295L;
 
     boolean isAnonymous();
 

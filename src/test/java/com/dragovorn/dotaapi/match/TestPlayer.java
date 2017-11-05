@@ -2,7 +2,8 @@ package com.dragovorn.dotaapi.match;
 
 import com.dragovorn.dotaapi.MatchJSON;
 import com.dragovorn.dotaapi.match.hero.Ability;
-import com.dragovorn.dotaapi.match.hero.Hero;
+import com.dragovorn.dotaapi.match.hero.generated.AbilityType;
+import com.dragovorn.dotaapi.match.hero.generated.Hero;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -13,12 +14,12 @@ public class TestPlayer {
 
     @Test
     public void testInventory() {
-        assertEquals(Hero.PUDGE, this.match.getRadiant().getPlayers().get(0).getHero());
+        assertEquals(Hero.NPC_DOTA_HERO_PUDGE, this.match.getRadiant().getPlayers().get(0).getHero());
     }
 
     @Test
     public void testAbilities() {
-        assertEquals(Ability.Type.PUDGE_MEAT_HOOK, this.match.getRadiant().getPlayers().get(0).getAbilities().get(0).getType());
+        assertEquals(AbilityType.PUDGE_MEAT_HOOK, this.match.getRadiant().getPlayers().get(0).getAbilities().get(0).getType());
     }
 
     @Test

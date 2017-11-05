@@ -1,6 +1,7 @@
 package com.dragovorn.dotaapi;
 
 import com.dragovorn.dotaapi.match.DotaMatch;
+import com.dragovorn.dotaapi.match.DotaMatchReduced;
 import com.dragovorn.dotaapi.match.IMatch;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -11,6 +12,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +25,7 @@ public class Dota implements IDota {
     private enum Call {
         GETMATCHHISTORY("IDOTA2Match_570/GetMatchHistory/V001"),
         GETMATCHDETAILS("IDOTA2Match_570/GetMatchDetails/V001"),
-        GETMATCHSEQUENCENUM("IDOTA2Match_570/GetMatchHistoryBySequenceNum/V001"),
+        GETMATCHHISTORYSEQUENCENUM("IDOTA2Match_570/GetMatchHistoryBySequenceNum/V001"),
         RESOLVEVANITYURL("ISteamUser/ResolveVanityURL/v0001");
 
         private final String url;
@@ -59,6 +61,22 @@ public class Dota implements IDota {
         return request;
     }
 
+    private List<IMatch> getMatchesFromJSONArray(JSONArray array, Class<? extends IMatch> clazz) {
+        ArrayList<IMatch> matches = new ArrayList<>();
+
+        array.forEach(obj -> {
+            JSONObject object = (JSONObject) obj;
+
+            try {
+                matches.add(clazz.getDeclaredConstructor(JSONObject.class).newInstance(object));
+            } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+                e.printStackTrace();
+            }
+        });
+
+        return matches;
+    }
+
     @Override
     public IMatch getMatchById(long id) {
         try {
@@ -75,20 +93,23 @@ public class Dota implements IDota {
 
     @Override
     public List<IMatch> getMatchesStartingAtSeqId(long id, int num) {
-        ArrayList<IMatch> matches = new ArrayList<>();
-
         try {
-            JSONArray array = makeApiRequest(Call.GETMATCHSEQUENCENUM, "&start_at_match_seq_num=" + id + "&matches_requested=" + num).getJSONArray("matches");
-
-            array.forEach(obj -> {
-                JSONObject object = (JSONObject) obj;
-
-                matches.add(new DotaMatch(object));
-            });
-        } catch (IOException exception) {
-            throw new RuntimeException(exception);
+            return getMatchesFromJSONArray(makeApiRequest(Call.GETMATCHHISTORYSEQUENCENUM, "&start_at_match_seq_num=" + id + "&matches_requested=" + num).getJSONArray("matches"), DotaMatch.class);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
-        return matches;
+        return null;
+    }
+
+    @Override
+    public List<IMatch> getMatchHistory() {
+        try {
+            return getMatchesFromJSONArray(makeApiRequest(Call.GETMATCHHISTORY).getJSONArray("matches"), DotaMatchReduced.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }
