@@ -61,18 +61,18 @@ public class Dota implements IDota {
         return request;
     }
 
-    private List<IMatch> getMatchesFromJSONArray(JSONArray array, Class<? extends IMatch> clazz) {
+    private List<IMatch> getMatchesFromJSONArray(JSONArray array) {
         ArrayList<IMatch> matches = new ArrayList<>();
 
-        array.forEach(obj -> {
+        for (Object obj : array) {
             JSONObject object = (JSONObject) obj;
 
-            try {
-                matches.add(clazz.getDeclaredConstructor(JSONObject.class).newInstance(object));
-            } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-                e.printStackTrace();
-            }
-        });
+            System.out.println("iter");
+
+            matches.add(new DotaMatchReduced(object));
+        }
+
+        System.out.println("finish");
 
         return matches;
     }
@@ -94,7 +94,7 @@ public class Dota implements IDota {
     @Override
     public List<IMatch> getMatchesStartingAtSeqId(long id, int num) {
         try {
-            return getMatchesFromJSONArray(makeApiRequest(Call.GETMATCHHISTORYSEQUENCENUM, "&start_at_match_seq_num=" + id + "&matches_requested=" + num).getJSONArray("matches"), DotaMatch.class);
+            return getMatchesFromJSONArray(makeApiRequest(Call.GETMATCHHISTORYSEQUENCENUM, "&start_at_match_seq_num=" + id + "&matches_requested=" + num).getJSONArray("matches"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -105,7 +105,7 @@ public class Dota implements IDota {
     @Override
     public List<IMatch> getMatchHistory() {
         try {
-            return getMatchesFromJSONArray(makeApiRequest(Call.GETMATCHHISTORY).getJSONArray("matches"), DotaMatchReduced.class);
+            return getMatchesFromJSONArray(makeApiRequest(Call.GETMATCHHISTORY).getJSONArray("matches"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -116,7 +116,7 @@ public class Dota implements IDota {
     @Override
     public List<IMatch> getMatchHistory(int num) {
         try {
-            return getMatchesFromJSONArray(makeApiRequest(Call.GETMATCHHISTORY, "&matches_requested=" + num).getJSONArray("matches"), DotaMatchReduced.class);
+            return getMatchesFromJSONArray(makeApiRequest(Call.GETMATCHHISTORY, "&matches_requested=" + num).getJSONArray("matches"));
         } catch (IOException e) {
             e.printStackTrace();
         }
