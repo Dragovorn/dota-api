@@ -23,13 +23,17 @@ Then you can make it a dependency:
 <dependency>
     <groupId>com.dragovorn</groupId>
     <artifactId>dota-api</artifactId>
-    <version>0.0.4</version>
+    <version>0.0.6</version>
 </dependency>
 ```
 Then you can make an object for the API by doing:
 ```Java
 IDota dota = new Dota("YOUR_API_KEY");
 ```
+
+Then to run operations on the API use some of the provided methods,
+please beware that bulk request methods return `DotaMatchReduced` 
+because the bulk api methods don't return a full `DotaMatch` object.
 
 Dependencies
 ------------
