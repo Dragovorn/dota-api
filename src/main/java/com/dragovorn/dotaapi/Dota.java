@@ -12,7 +12,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,12 +66,8 @@ public class Dota implements IDota {
         for (Object obj : array) {
             JSONObject object = (JSONObject) obj;
 
-            System.out.println("iter");
-
             matches.add(new DotaMatchReduced(object));
         }
-
-        System.out.println("finish");
 
         return matches;
     }

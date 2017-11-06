@@ -36,7 +36,11 @@ public class DotaPlayer implements IPlayer {
     private int heroHealing;
 
     public DotaPlayer(JSONObject object) {
-        this.accountId = object.getLong("account_id");
+        if (object.has("account_id")) {
+            this.accountId = object.getLong("account_id");
+        } else {
+            this.accountId = IPlayer.ANONYMOUS;
+        }
         this.kills = object.getInt("kills");
         this.deaths = object.getInt("deaths");
         this.assists = object.getInt("assists");

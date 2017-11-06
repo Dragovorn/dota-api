@@ -13,7 +13,11 @@ public class DotaPlayerReduced implements IPlayer {
     private long accountId;
 
     public DotaPlayerReduced(JSONObject object) {
-        this.accountId = object.getLong("account_id");
+        if (object.has("account_id")) {
+            this.accountId = object.getLong("account_id");
+        } else {
+            this.accountId = IPlayer.ANONYMOUS;
+        }
         this.hero = Hero.fromId(object.getInt("hero_id"));
     }
 
