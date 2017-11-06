@@ -23,7 +23,7 @@ Then you can make it a dependency:
 <dependency>
     <groupId>com.dragovorn</groupId>
     <artifactId>dota-api</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.4</version>
 </dependency>
 ```
 Then you can make an object for the API by doing:

@@ -23,5 +23,6 @@ public enum GameMode {
     EVENT,
     ALL_RANDOM_DEATH_MATCH,
     SOLO_MID_1_V_1,
-    RANKED_ALL_PICK
+    RANKED_ALL_PICK,
+    TURBO
 }
