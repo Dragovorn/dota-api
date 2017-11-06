@@ -49,8 +49,8 @@ MIT
 
 Help Me!
 --------
-You could help by forking and improving the codebase/adding features, or if you want
-to help without much effort you could [Donate](https://twitch.streamlabs.com/dragovorn#/ "My Streamlabs Donation Link")
+You could help by making a pull request and improving the codebase/adding features, or even by reporting an issue, if you want
+to help without much effort you could [Donate](https://twitch.streamlabs.com/dragovorn#/ "My Streamlabs Donation Link"),
 or if you are interested in watching me play (or work) on [Twitch](https://twitch.tv/dragovorn "My Twitch Link")!
-You could also join my [Discord](http://discord.gg/Q4Pak66 "My Discord Invite Link") to hangout and talk, if you haven any
-questions just send a message to `Dragovorn#9890` and I'll attempt to answer your question in a timely manner.
+You can join my [Discord](http://discord.gg/Q4Pak66 "My Discord Invite Link") to hangout and talk, if you have any
+questions just send a message to `Dragovorn#0920` and I'll attempt to answer your question in a timely manner.
